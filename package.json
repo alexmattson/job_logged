@@ -1,0 +1,21 @@
+{
+  "name": "JobLogged",
+  "version": "1.0.0",
+  "description": "This README would normally document whatever steps are necessary to get the application up and running.",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bin": {
+    "eos": "node_modules/eos-redux/index.js"
+  },
+  "dependencies": {
+    "eos-redux": "^1.2.9"
+  }
+}
