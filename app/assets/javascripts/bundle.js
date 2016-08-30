@@ -28791,6 +28791,10 @@
 	
 	var _reactRouter = __webpack_require__(197);
 	
+	var _application_index_container = __webpack_require__(385);
+	
+	var _application_index_container2 = _interopRequireDefault(_application_index_container);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -28828,6 +28832,11 @@
 							'Welcome ',
 							this.props.session.currentUser.username
 						)
+					),
+					_react2.default.createElement(
+						'div',
+						null,
+						_react2.default.createElement(_application_index_container2.default, null)
 					)
 				);
 			}
@@ -29168,10 +29177,19 @@
 	
 	var _master_middleware2 = _interopRequireDefault(_master_middleware);
 	
+	var _merge = __webpack_require__(267);
+	
+	var _merge2 = _interopRequireDefault(_merge);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var configureStore = function configureStore() {
-	  var preloadedState = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+	var nullState = {
+	  session: {},
+	  applications: {}
+	};
+	
+	var configureStore = function configureStore(inputs) {
+	  var preloadedState = (0, _merge2.default)({}, nullState, inputs);
 	  return (0, _redux.createStore)(_root_reducer2.default, preloadedState, _master_middleware2.default);
 	};
 	
@@ -29193,10 +29211,15 @@
 	
 	var _session_reducer2 = _interopRequireDefault(_session_reducer);
 	
+	var _application_reducer = __webpack_require__(387);
+	
+	var _application_reducer2 = _interopRequireDefault(_application_reducer);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var RootReducer = (0, _redux.combineReducers)({
-	  session: _session_reducer2.default
+	  session: _session_reducer2.default,
+	  applications: _application_reducer2.default
 	});
 	
 	exports.default = RootReducer;
@@ -32574,13 +32597,17 @@
 	
 	var _redux = __webpack_require__(180);
 	
+	var _application_middleware = __webpack_require__(382);
+	
+	var _application_middleware2 = _interopRequireDefault(_application_middleware);
+	
 	var _session_middleware = __webpack_require__(376);
 	
 	var _session_middleware2 = _interopRequireDefault(_session_middleware);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var masterMiddleware = (0, _redux.applyMiddleware)(_session_middleware2.default);
+	var masterMiddleware = (0, _redux.applyMiddleware)(_application_middleware2.default, _session_middleware2.default);
 	
 	exports.default = masterMiddleware;
 
@@ -32905,6 +32932,346 @@
 	}(_react2.default.Component);
 	
 	exports.default = (0, _reactRouter.withRouter)(Header);
+
+/***/ },
+/* 382 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _application_api_util = __webpack_require__(383);
+	
+	var _application_actions = __webpack_require__(384);
+	
+	// Application API Util
+	exports.default = function (_ref) {
+	  var getState = _ref.getState;
+	  var dispatch = _ref.dispatch;
+	  return function (next) {
+	    return function (action) {
+	      var applicationsSuccess = function applicationsSuccess(data) {
+	        return dispatch((0, _application_actions.receiveApplications)(data));
+	      };
+	      var applicationSuccess = function applicationSuccess(data) {
+	        return dispatch((0, _application_actions.receiveApplication)(data));
+	      };
+	      var applicationRemoved = function applicationRemoved(data) {
+	        return dispatch((0, _application_actions.removeApplication)(data));
+	      };
+	      var applicationErrored = function applicationErrored(data) {
+	        return dispatch((0, _application_actions.applicationError)(data.responseJSON));
+	      };
+	      switch (action.type) {
+	        case _application_actions.REQUEST_APPLICATIONS:
+	          (0, _application_api_util.fetchApplications)(applicationsSuccess);
+	          return next(action);
+	        case _application_actions.REQUEST_APPLICATION:
+	          (0, _application_api_util.fetchApplication)(action.id, applicationSuccess);
+	          return next(action);
+	        case _application_actions.CREATE_APPLICATION:
+	          (0, _application_api_util.createApplication)(action.application, applicationSuccess, applicationErrored);
+	          return next(action);
+	        case _application_actions.UPDATE_APPLICATION:
+	          (0, _application_api_util.updateApplication)(action.application, applicationSuccess);
+	          return next(action);
+	        case _application_actions.DESTROY_APPLICATION:
+	          (0, _application_api_util.destroyApplication)(action.application, applicationRemoved);
+	          return next(action);
+	        default:
+	          return next(action);
+	      }
+	    };
+	  };
+	};
+	// Application Action
+
+/***/ },
+/* 383 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	var fetchApplications = exports.fetchApplications = function fetchApplications(success) {
+	  $.ajax({
+	    method: 'GET',
+	    url: 'api/applications',
+	    success: success
+	  });
+	};
+	
+	var fetchApplication = exports.fetchApplication = function fetchApplication(id, success) {
+	  $.ajax({
+	    method: 'GET',
+	    url: 'api/applications/' + id,
+	    success: success
+	  });
+	};
+	
+	var createApplication = exports.createApplication = function createApplication(application, success, error) {
+	  $.ajax({
+	    method: 'POST',
+	    url: 'api/applications',
+	    data: application,
+	    success: success,
+	    error: error
+	  });
+	};
+	
+	var updateApplication = exports.updateApplication = function updateApplication(application, success) {
+	  $.ajax({
+	    method: 'PATCH',
+	    url: 'api/applications/' + application.id,
+	    data: { application: application },
+	    success: success
+	  });
+	};
+	
+	var destroyApplication = exports.destroyApplication = function destroyApplication(application, success) {
+	  $.ajax({
+	    method: 'DELETE',
+	    url: 'api/applications/' + application.id,
+	    success: success
+	  });
+	};
+
+/***/ },
+/* 384 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	var REQUEST_APPLICATIONS = exports.REQUEST_APPLICATIONS = "REQUEST_APPLICATIONS";
+	var REQUEST_APPLICATION = exports.REQUEST_APPLICATION = "REQUEST_APPLICATION";
+	var RECEIVE_APPLICATIONS = exports.RECEIVE_APPLICATIONS = "RECEIVE_APPLICATIONS";
+	var RECEIVE_APPLICATION = exports.RECEIVE_APPLICATION = "RECEIVE_APPLICATION";
+	var REMOVE_APPLICATION = exports.REMOVE_APPLICATION = "REMOVE_APPLICATION";
+	var CREATE_APPLICATION = exports.CREATE_APPLICATION = "CREATE_APPLICATION";
+	var UPDATE_APPLICATION = exports.UPDATE_APPLICATION = "UPDATE_APPLICATION";
+	var DESTROY_APPLICATION = exports.DESTROY_APPLICATION = "DESTROY_APPLICATION";
+	var APPLICATION_ERROR = exports.APPLICATION_ERROR = "APPLICATION_ERROR";
+	
+	var requestApplications = exports.requestApplications = function requestApplications() {
+	  return {
+	    type: REQUEST_APPLICATIONS
+	  };
+	};
+	
+	var requestApplication = exports.requestApplication = function requestApplication(id) {
+	  return {
+	    type: REQUEST_APPLICATION,
+	    id: id
+	  };
+	};
+	
+	var receiveApplications = exports.receiveApplications = function receiveApplications(applications) {
+	  return {
+	    type: RECEIVE_APPLICATIONS,
+	    applications: applications
+	  };
+	};
+	
+	var receiveApplication = exports.receiveApplication = function receiveApplication(application) {
+	  return {
+	    type: RECEIVE_APPLICATION,
+	    application: application
+	  };
+	};
+	
+	var removeApplication = exports.removeApplication = function removeApplication(application) {
+	  return {
+	    type: REMOVE_APPLICATION,
+	    application: application
+	  };
+	};
+	
+	var createApplication = exports.createApplication = function createApplication(application) {
+	  return {
+	    type: CREATE_APPLICATION,
+	    application: application
+	  };
+	};
+	
+	var updateApplication = exports.updateApplication = function updateApplication(application) {
+	  return {
+	    type: UPDATE_APPLICATION,
+	    application: application
+	  };
+	};
+	
+	var destroyApplication = exports.destroyApplication = function destroyApplication(application) {
+	  return {
+	    type: DESTROY_APPLICATION,
+	    application: application
+	  };
+	};
+	
+	var applicationError = exports.applicationError = function applicationError(error) {
+	  return {
+	    type: APPLICATION_ERROR,
+	    error: error
+	  };
+	};
+
+/***/ },
+/* 385 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _reactRedux = __webpack_require__(173);
+	
+	var _application_index = __webpack_require__(386);
+	
+	var _application_index2 = _interopRequireDefault(_application_index);
+	
+	var _application_actions = __webpack_require__(384);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var mapStateToProps = function mapStateToProps(state) {
+	  return {
+	    applications: state.applications
+	  };
+	};
+	// Actions
+	
+	
+	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+	  return {
+	    requestApplications: function requestApplications() {
+	      return dispatch((0, _application_actions.requestApplications)());
+	    },
+	    createApplication: function createApplication(application) {
+	      return dispatch((0, _application_actions.createApplication)(application));
+	    }
+	  };
+	};
+	
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_application_index2.default);
+
+/***/ },
+/* 386 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	// Components
+	
+	var ApplicationIndex = function (_React$Component) {
+	  _inherits(ApplicationIndex, _React$Component);
+	
+	  function ApplicationIndex(props) {
+	    _classCallCheck(this, ApplicationIndex);
+	
+	    return _possibleConstructorReturn(this, (ApplicationIndex.__proto__ || Object.getPrototypeOf(ApplicationIndex)).call(this, props));
+	  }
+	
+	  _createClass(ApplicationIndex, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      this.props.requestApplications();
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var propApps = this.props.applications;
+	      var applications = Object.keys(this.props.applications).map(function (appId) {
+	        return _react2.default.createElement(
+	          'li',
+	          { key: appId },
+	          propApps[appId].company
+	        );
+	      });
+	
+	      return _react2.default.createElement(
+	        'ul',
+	        null,
+	        applications
+	      );
+	    }
+	  }]);
+	
+	  return ApplicationIndex;
+	}(_react2.default.Component);
+	
+	exports.default = ApplicationIndex;
+
+/***/ },
+/* 387 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _application_actions = __webpack_require__(384);
+	
+	var _merge = __webpack_require__(267);
+	
+	var _merge2 = _interopRequireDefault(_merge);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+	
+	var ApplicationsReducer = function ApplicationsReducer() {
+	  var state = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+	  var action = arguments[1];
+	
+	  var newState = void 0;
+	  switch (action.type) {
+	    case _application_actions.RECEIVE_APPLICATIONS:
+	      return action.applications;
+	    case _application_actions.RECEIVE_APPLICATION:
+	      var newApplication = _defineProperty({}, action.application.id, action.application);
+	      return Object.assign({}, state, newApplication);
+	    case _application_actions.REMOVE_APPLICATION:
+	      newState = Object.assign({}, state);
+	      delete newState[action.application.id];
+	      return newState;
+	    case _application_actions.APPLICATION_ERROR:
+	      alert(action.error);
+	      return state;
+	    default:
+	      return state;
+	  }
+	};
+	
+	exports.default = ApplicationsReducer;
 
 /***/ }
 /******/ ]);

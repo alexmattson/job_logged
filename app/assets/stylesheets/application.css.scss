@@ -110,15 +110,17 @@ body {
 
 .content {
   padding: 30px;
+  position: relative;
+  width: 100%;
+  position: relative;
+    top: -120px;
 }
+
 .main {
   background: purple;
   background-image: url('https://s14.postimg.org/rs2hkrp19/image.png');
   background-repeat: no-repeat;
   background-size: 100% auto;
-  position: absolute;
-    top: 150px;
-  width: calc(100% - 250px);
   height: 250px;
   padding: 20px;
 }
@@ -129,7 +131,7 @@ body {
   }
 }
 
-@media (max-width: 645px) {
+@media (max-width: 720px) {
   .main {
     background-size: auto 100%;
   }
