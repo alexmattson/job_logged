@@ -1,9 +1,9 @@
 import { applyMiddleware } from 'redux';
 
-//Import middleware
+import SessionMiddleware from './session_middleware';
 
 const masterMiddleware = applyMiddleware(
-  // your middleware here
+  SessionMiddleware
 );
 
 export default masterMiddleware;
