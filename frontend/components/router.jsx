@@ -8,8 +8,6 @@ import App from './app';
 class AppRouter extends React.Component{
   constructor(props){
     super(props);
-    this._ensureLoggedIn = this._ensureLoggedIn.bind(this);
-    this._redirectIfLoggedIn = this._redirectIfLoggedIn.bind(this);
   }
 
 
