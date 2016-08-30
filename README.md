@@ -1,24 +1,9 @@
-# README
+![logo.png](https://s13.postimg.org/lnbhemlav/logo.png)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+[Heroku link][heroku]
 
-Things you may want to cover:
+[heroku]: http://www.herokuapp.com
 
-* Ruby version
+## Description 
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Managing all the intricacies of the job search process can be difficult; this site aims to make it a little bit easier for the user. No more messing around with nasty spreadsheets, we will provide a repository for all your details of the job search process. By the end of Week 9, this app will, at a minimum, satisfy the following criteria with smooth, bug-free navigation, adequate seed data and sufficient CSS styling:
