@@ -66,9 +66,9 @@ class SessionForm extends React.Component {
 			return (
 				<div className={this._setClass('cpassword')}>
 					<input className="input__field input__field--yoko"
-								 type="text"
+								 type="password"
 								 id="cpassword"
-								 value={this.state.password}
+								 value={this.state.cpassword}
 								 onChange={this.update("cpassword")} />
 							 <label className="input__label input__label--yoko" for="cpassword">
 						<span className="input__label-content input__label-content--yoko">Confirm Password</span>
@@ -102,7 +102,7 @@ class SessionForm extends React.Component {
 						</div>
 						<div className={this._setClass('password')}>
 							<input className="input__field input__field--yoko"
-										 type="text"
+										 type="password"
 										 id="password"
 										 value={this.state.password}
 										 onChange={this.update("password")} />

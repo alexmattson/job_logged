@@ -21,8 +21,14 @@
 // Variables
 
 $header-color: #ff3850;
+$darker-red: #f5f5f5;
+$background-color: #edecec;
 
 
+// body
+body {
+  background: $background-color;
+}
 // Header
 
 .header {
@@ -149,7 +155,7 @@ $header-color: #ff3850;
 	z-index: 10;
 	width: 100%;
 	background: transparent;
-	color: #f5f5f5;
+	color: $darker-red;
 	opacity: 0;
 	-webkit-transition: opacity 0.3s;
 	transition: opacity 0.3s;
