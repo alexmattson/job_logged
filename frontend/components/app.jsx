@@ -15,7 +15,10 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <h1 onClick={this._returnHome}>Job Logged</h1>
+        <img src='https://s18.postimg.org/5es1dghc5/logo.png'
+             alt='Logo'
+             onClick={this._returnHome}
+             className='logo'/>
         {this.props.children}
       </div>
     );

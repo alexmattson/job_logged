@@ -28668,11 +28668,10 @@
 	      return _react2.default.createElement(
 	        'div',
 	        null,
-	        _react2.default.createElement(
-	          'h1',
-	          { onClick: this._returnHome },
-	          'Job Logged'
-	        ),
+	        _react2.default.createElement('img', { src: 'https://s18.postimg.org/5es1dghc5/logo.png',
+	          alt: 'Logo',
+	          onClick: this._returnHome,
+	          className: 'logo' }),
 	        this.props.children
 	      );
 	    }
