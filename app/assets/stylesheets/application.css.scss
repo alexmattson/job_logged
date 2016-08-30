@@ -16,26 +16,123 @@
 
  @import "bootstrap-sprockets";
  @import "bootstrap";
+ @import "font-awesome-sprockets";
+ @import "font-awesome";
 
 
 // Variables
 
 $header-color: #ff3850;
-$darker-red: #f5f5f5;
+$darker-red: #b04b40;
 $background-color: #edecec;
 
 
 // body
+
 body {
   background: $background-color;
+  font-family: 'Open Sans', sans-serif;
 }
+
+.app {
+  display: flex;
+}
+
 // Header
 
 .header {
   background: $header-color;
   display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   padding: 25px;
   height: 250px;
+}
+
+// Sidebar
+
+.sidebar {
+  display: flex;
+  justify-content: flex-start;
+  height: calc(100% - 250px);
+  width: 200px;
+  padding: 30px;
+}
+
+.sidebar ul {
+  padding: 0;
+}
+
+.sidebar li {
+  list-style-type: none;
+  padding: 5px;
+}
+
+.sidebar li:hover {
+  color: $darker-red;
+  cursor: pointer;
+}
+
+.sidebar .current-page {
+  color: $header-color;
+}
+
+.sidebar i {
+  list-style-type: none;
+  margin-right: 5px;
+}
+
+.sidebar span {
+  font-weight: bold;
+}
+
+.sm-sidebar-icon {
+  display: none;
+}
+
+@media (max-width: 835px) {
+  .sidebar {
+    display: none;
+  }
+
+  .sidebar .show {
+    display: block;
+  }
+
+  .sm-sidebar-icon {
+    display: block;
+    font-size: 40px;
+    color: #fff;
+  }
+}
+
+// Content
+
+.content {
+  padding: 30px;
+}
+.main {
+  background: purple;
+  background-image: url('https://s14.postimg.org/rs2hkrp19/image.png');
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  position: absolute;
+    top: 150px;
+  width: calc(100% - 250px);
+  height: 250px;
+  padding: 20px;
+}
+
+@media (max-width: 835px) {
+  .main {
+    width: calc(100% - 60px);
+  }
+}
+
+@media (max-width: 645px) {
+  .main {
+    background-size: auto 100%;
+  }
 }
 
 // Button Overrides
@@ -56,6 +153,7 @@ body {
 
 // Session Form
 
+
 .session-form {
   position: absolute;
     top: 150px;
@@ -70,6 +168,12 @@ body {
   height: calc(100% - 150px) ;
   width: 100%;
   padding: 30px;
+}
+
+@media (max-height: 700px) {
+  .session-form {
+    background-size: 100% auto; /* Force the image to its minimum width */
+  }
 }
 
 .session-form h1 {
@@ -155,7 +259,7 @@ body {
 	z-index: 10;
 	width: 100%;
 	background: transparent;
-	color: $darker-red;
+	color: #fff;
 	opacity: 0;
 	-webkit-transition: opacity 0.3s;
 	transition: opacity 0.3s;
@@ -164,7 +268,7 @@ body {
 .input__label--yoko {
 	position: relative;
 	width: 100%;
-	color: #b04b40;
+	color: $darker-red;
 	text-align: left;
 }
 
@@ -225,3 +329,5 @@ body {
 	-webkit-transform: perspective(1000px) rotate3d(1, 0, 0, -90deg);
 	transform: perspective(1000px) rotate3d(1, 0, 0, -90deg);
 }
+
+// Main

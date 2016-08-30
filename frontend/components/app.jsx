@@ -2,6 +2,9 @@ import React from 'react';
 import { Link } from 'react-router';
 import { withRouter } from 'react-router';
 
+import SidebarContainer from './sidebar/sidebar_container';
+import HeaderContainer from './header/header_container';
+
 class App extends React.Component {
   constructor (props) {
     super(props);
@@ -15,7 +18,11 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        {this.props.children}
+        <HeaderContainer />
+        <div className='app'>
+          <SidebarContainer />
+          {this.props.children}
+        </div>
       </div>
     );
   }

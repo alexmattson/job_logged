@@ -4,24 +4,18 @@ import { withRouter } from 'react-router';
 class Home extends React.Component {
 	constructor(props){
 		super(props);
-		this._logout = this._logout.bind(this);
-		this._redirectToLogIn = this._redirectToLogIn.bind(this);
+	}
+	componentDidMount() {
+		document.getElementById("home").className += " current-page";
 	}
 
-	_logout() {
-    this.props.logout();
-		this.props.router.push('/login');
-  }
-
-	_redirectToLogIn() {
-	}
 
 	render() {
 		return (
-			<div>
-				<h1>Welcome {this.props.session.currentUser.username}</h1>
-        <button onClick={this._logout}
-								className='btn'>Logout</button>
+			<div className='content'>
+				<div className='main rotateInDownRight'>
+					<h1>Welcome {this.props.session.currentUser.username}</h1>
+				</div>
       </div>
 		);
 	}
