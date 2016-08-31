@@ -6,8 +6,8 @@ class ProgressBar extends React.Component {
     super(props);
   }
 
-  componentDidMount() {
-    let progres = this.props.progress;
+  componentWillReceiveProps(newProps) {
+    let progres = newProps.progress;
     let width;
     if (progres === 'decision') {
       width = '100%';

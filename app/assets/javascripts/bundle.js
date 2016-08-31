@@ -34038,9 +34038,9 @@
 	  }
 	
 	  _createClass(ProgressBar, [{
-	    key: 'componentDidMount',
-	    value: function componentDidMount() {
-	      var progres = this.props.progress;
+	    key: 'componentWillReceiveProps',
+	    value: function componentWillReceiveProps(newProps) {
+	      var progres = newProps.progress;
 	      var width = void 0;
 	      if (progres === 'decision') {
 	        width = '100%';
