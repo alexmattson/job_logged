@@ -1,6 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router';
 import ApplicationIndexContainer from '../application/application_index_container';
+import HomeButtonGroup from './home_button_group';
 
 class Home extends React.Component {
 	constructor(props){
@@ -13,10 +14,11 @@ class Home extends React.Component {
 
 	render() {
 		return (
-			<div className='content'>
-				<div className='main rotateInDownRight'>
+			<div className='app-content'>
+				<div className='main shadow'>
 					<h1>Welcome {this.props.session.currentUser.username}</h1>
 				</div>
+				<HomeButtonGroup />
 				<div>
 					<ApplicationIndexContainer />
 				</div>

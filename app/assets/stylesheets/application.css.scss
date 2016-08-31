@@ -22,10 +22,11 @@
 
 // Variables
 
-$header-color: #ff3850;
+$red: #ff3850;
 $darker-red: #b04b40;
 $background-color: #edecec;
-
+$blue: #2196f3;
+$green: #00c853;
 
 // body
 
@@ -41,7 +42,7 @@ body {
 // Header
 
 .header {
-  background: $header-color;
+  background: $red;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -69,12 +70,12 @@ body {
 }
 
 .sidebar li:hover {
-  color: $darker-red;
+  color: $red;
   cursor: pointer;
 }
 
 .sidebar .current-page {
-  color: $header-color;
+  color: $red;
 }
 
 .sidebar i {
@@ -108,7 +109,7 @@ body {
 
 // Content
 
-.content {
+.app-content {
   padding: 30px;
   position: relative;
   width: 100%;
@@ -117,7 +118,6 @@ body {
 }
 
 .main {
-  background: purple;
   background-image: url('https://s14.postimg.org/rs2hkrp19/image.png');
   background-repeat: no-repeat;
   background-size: 100% auto;
@@ -127,7 +127,7 @@ body {
 
 @media (max-width: 835px) {
   .main {
-    width: calc(100% - 60px);
+    width: calc(100%);
   }
 }
 
@@ -139,11 +139,30 @@ body {
 
 // Button Overrides
 
-.btn-primary {
-  background-color: #2196f3;
+.btn {
+  @extend .shadow;
+  color: white;
+  border: none;
 }
-.btn-primary:hover {
-  background-color: #2196f3;
+
+.btn:hover {
+  color: white;
+}
+
+.btn-primary {
+  background-color: $blue;
+}
+
+.btn-primary:focus {
+  background-color: $blue;
+}
+
+.btn-danger {
+  background-color: $red;
+}
+
+.btn-success {
+  background-color: $green;
 }
 
 .btn-lg, .btn-group-lg > .btn {
@@ -151,6 +170,33 @@ body {
   font-size: 17px;
   line-height: 1.3333333;
   border-radius: 2px;
+}
+
+.button-group button {
+  width: calc(33% - 4.75px);
+  margin: 0 10px 10px 0;
+  height:40px;
+  position: relative;
+    top: 10px;
+  -webkit-transition: height 1s;
+  transition: height 1s;
+}
+
+.button-group button:last-of-type {
+  margin-right: 0px;
+}
+
+.button-group button:focus {
+  background-color: $blue;
+  box-shadow: none;
+  outline: 0 none;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+
+.btn-full {
+  margin: 10px 0;
+  width: calc(100%);
 }
 
 // Session Form
@@ -281,7 +327,7 @@ body {
 	left: 0;
 	width: 100%;
 	height: 4em;
-	background: $header-color;
+	background: $red;
 	-webkit-transform: perspective(1000px) rotate3d(1, 0, 0, 90deg);
 	transform: perspective(1000px) rotate3d(1, 0, 0, 90deg);
 	-webkit-transform-origin: 50% 100%;
@@ -332,4 +378,144 @@ body {
 	transform: perspective(1000px) rotate3d(1, 0, 0, -90deg);
 }
 
-// Main
+/* Form */
+.input__field--form {
+	z-index: 10;
+	width: 100%;
+	background: transparent;
+	color: #000;
+	opacity: 0;
+	-webkit-transition: opacity 0.3s;
+	transition: opacity 0.3s;
+}
+
+.input__label--form {
+	position: relative;
+  bottom: 0;
+	width: 100%;
+	color: #fff;
+	text-align: left;
+}
+
+.input__label--form::before {
+	content: '';
+	position: absolute;
+	bottom: 100%;
+	left: 0;
+	width: 100%;
+	height: 4em;
+	background: #fff;
+	-webkit-transform: perspective(1000px) rotate3d(1, 0, 0, 90deg);
+	transform: perspective(1000px) rotate3d(1, 0, 0, 90deg);
+	-webkit-transform-origin: 50% 100%;
+	transform-origin: 50% 100%;
+	-webkit-transition: -webkit-transform 0.3s;
+	transition: transform 0.3s;
+}
+
+.input__label--form::after {
+	content: '';
+	position: absolute;
+	top: -2px;
+	left: 0;
+	width: 100%;
+	height: 1px;
+	background: #ddd;
+	-webkit-transform-origin: 50% 0%;
+	transform-origin: 50% 0%;
+	-webkit-transition: -webkit-transform 0.3s;
+	transition: transform 0.3s;
+}
+
+.input__label-content--form {
+	padding: 0.75em 0;
+}
+
+.input__field--form:focus,
+.input--filled .input__field--form {
+	opacity: 1;
+	-webkit-transition-delay: 0.3s;
+	transition-delay: 0.3s;
+}
+
+.input__field--form:focus + .input__label--form::before,
+.input--filled .input__label--form::before {
+	-webkit-transform: perspective(1000px) rotate3d(1, 0, 0, 0deg);
+	transform: perspective(1000px) rotate3d(1, 0, 0, 0deg);
+}
+
+.input__field--form:focus + .input__label--form,
+.input--filled .input__label--form {
+	pointer-events: none;
+}
+
+.input__field--form:focus + .input__label--form::after,
+.input--filled .input__label--form::after {
+	-webkit-transform: perspective(1000px) rotate3d(1, 0, 0, -90deg);
+	transform: perspective(1000px) rotate3d(1, 0, 0, -90deg);
+}
+
+// App Forms
+
+.btn-tall {
+  height: 60px;
+}
+
+.form-container {
+  width: calc(100%);
+
+  display: block;
+  line-height:0;
+  height: 0;
+  overflow: hidden;
+
+  padding: 0px;
+  margin: 0;
+  color: white;
+  -webkit-transition: height 1s, padding 1s;
+  transition: height 1s, padding 1s;
+}
+
+.form-primary {
+  @extend .shadow;
+  border-radius: 2px;
+  background: $blue;
+}
+
+.form-buffer {
+  height: inherit;
+}
+
+.form {
+  height: inherit;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.form-input {
+  margin: 0 30px;
+  width: calc(100% - 150px);
+}
+
+.form-button {
+  padding-left: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 100%;
+  border-left: 1px solid #ddd;
+}
+.form-button:hover {
+  cursor: pointer;
+}
+
+// Misc
+
+.shadow {
+  box-shadow: 0 0 5px #888888;
+}
