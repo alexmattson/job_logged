@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
 	before_validation :ensure_session_token_uniqueness
 
   # Associations
+	has_many :applications
 
   # Methods
 	def password= password

@@ -5,10 +5,15 @@ import { withRouter } from 'react-router';
 class SessionForm extends React.Component {
 	constructor(props){
 		super(props);
-    this._logout = this._logout.bind(this);
+    this.home = this.home.bind(this);
+    this.logout = this.logout.bind(this);
 	}
 
-  _logout() {
+	home() {
+		this.props.router.push('/');
+	}
+
+  logout() {
     this.props.logout();
 		this.props.router.push('/login');
   }
@@ -19,7 +24,7 @@ class SessionForm extends React.Component {
         <ul>
           <li id='home'>
             <i className="fa fa-home"></i>
-            <span>Home</span>
+            <span onClick={this.home}>Home</span>
           </li>
           <li id='profile'>
             <i className="fa fa-user"></i>
@@ -27,7 +32,7 @@ class SessionForm extends React.Component {
           </li>
           <li>
             <i className="fa fa-sign-out"></i>
-            <span onClick={this._logout}>Logout</span>
+            <span onClick={this.logout}>Logout</span>
           </li>
         </ul>
 			</div>

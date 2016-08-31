@@ -22,10 +22,14 @@
 
 // Variables
 
-$header-color: #ff3850;
+$red: #ff3850;
 $darker-red: #b04b40;
 $background-color: #edecec;
+$blue: #2196f3;
+$light-blue: #5bc0de;
+$green: #00c853;
 
+$dark-font: #333333;
 
 // body
 
@@ -41,7 +45,7 @@ body {
 // Header
 
 .header {
-  background: $header-color;
+  background: $red;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -69,12 +73,12 @@ body {
 }
 
 .sidebar li:hover {
-  color: $darker-red;
+  color: $red;
   cursor: pointer;
 }
 
 .sidebar .current-page {
-  color: $header-color;
+  color: $red;
 }
 
 .sidebar i {
@@ -108,28 +112,37 @@ body {
 
 // Content
 
-.content {
+.app-content {
   padding: 30px;
+  position: relative;
+  width: 100%;
+  position: relative;
+    top: -120px;
 }
+
 .main {
-  background: purple;
   background-image: url('https://s14.postimg.org/rs2hkrp19/image.png');
   background-repeat: no-repeat;
   background-size: 100% auto;
-  position: absolute;
-    top: 150px;
-  width: calc(100% - 250px);
+  background-position: center;
   height: 250px;
   padding: 20px;
 }
 
+.main h1, h3 {
+  color: white;
+}
+// .main h1 {
+//   color: white;
+// }
+
 @media (max-width: 835px) {
   .main {
-    width: calc(100% - 60px);
+    width: calc(100%);
   }
 }
 
-@media (max-width: 645px) {
+@media (max-width: 720px) {
   .main {
     background-size: auto 100%;
   }
@@ -137,11 +150,46 @@ body {
 
 // Button Overrides
 
-.btn-primary {
-  background-color: #2196f3;
+.btn {
+  @extend .shadow;
+  color: white;
+  border: none;
 }
-.btn-primary:hover {
-  background-color: #2196f3;
+
+.btn:hover {
+  color: white;
+}
+
+.btn-primary {
+  background-color: $blue;
+}
+
+.btn-primary:focus {
+  background-color: $blue;
+}
+
+.btn-info {
+  background-color: $light-blue;
+}
+
+.btn-info:focus {
+  background-color: $light-blue;
+}
+
+.btn-danger {
+  background-color: $red;
+}
+
+.btn-danger:focus {
+  background-color: $red;
+}
+
+.btn-success {
+  background-color: $green;
+}
+
+.btn-success:focus {
+  background-color: $green;
 }
 
 .btn-lg, .btn-group-lg > .btn {
@@ -149,6 +197,47 @@ body {
   font-size: 17px;
   line-height: 1.3333333;
   border-radius: 2px;
+}
+
+.button-group {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.button-group button {
+  width: calc(33.333333%);
+  margin: 0 10px 10px 0;
+  height:40px;
+  position: relative;
+    top: 10px;
+  -webkit-transition: height 1s;
+  transition: height 1s;
+}
+
+.button-group button:last-of-type {
+  margin-right: 0px;
+}
+
+.button-group button:focus {
+  box-shadow: none;
+  outline: 0 none;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+
+.btn-full {
+  margin: 10px 0 0 0;
+  width: calc(100%);
+  -webkit-transition: height 1s;
+  transition: height 1s;
+}
+
+.btn-full:focus {
+  box-shadow: none;
+  outline: 0 none;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
 }
 
 // Session Form
@@ -279,7 +368,7 @@ body {
 	left: 0;
 	width: 100%;
 	height: 4em;
-	background: $header-color;
+	background: $red;
 	-webkit-transform: perspective(1000px) rotate3d(1, 0, 0, 90deg);
 	transform: perspective(1000px) rotate3d(1, 0, 0, 90deg);
 	-webkit-transform-origin: 50% 100%;
@@ -330,4 +419,240 @@ body {
 	transform: perspective(1000px) rotate3d(1, 0, 0, -90deg);
 }
 
-// Main
+/* Form */
+.input__field--form {
+	z-index: 10;
+	width: 100%;
+	background: transparent;
+	color: #000;
+	opacity: 0;
+	-webkit-transition: opacity 0.3s;
+	transition: opacity 0.3s;
+}
+
+.input__label--form {
+	position: relative;
+  bottom: 0;
+	width: 100%;
+	color: #fff;
+	text-align: left;
+}
+
+.input__label--form::before {
+	content: '';
+	position: absolute;
+	bottom: 100%;
+	left: 0;
+	width: 100%;
+	height: 4em;
+	background: #fff;
+	-webkit-transform: perspective(1000px) rotate3d(1, 0, 0, 90deg);
+	transform: perspective(1000px) rotate3d(1, 0, 0, 90deg);
+	-webkit-transform-origin: 50% 100%;
+	transform-origin: 50% 100%;
+	-webkit-transition: -webkit-transform 0.3s;
+	transition: transform 0.3s;
+}
+
+.input__label--form::after {
+	content: '';
+	position: absolute;
+	top: -2px;
+	left: 0;
+	width: 100%;
+	height: 1px;
+	background: #ddd;
+	-webkit-transform-origin: 50% 0%;
+	transform-origin: 50% 0%;
+	-webkit-transition: -webkit-transform 0.3s;
+	transition: transform 0.3s;
+}
+
+.input__label-content--form {
+	padding: 0.75em 0;
+}
+
+.input__field--form:focus,
+.input--filled .input__field--form {
+	opacity: 1;
+	-webkit-transition-delay: 0.3s;
+	transition-delay: 0.3s;
+}
+
+.input__field--form:focus + .input__label--form::before,
+.input--filled .input__label--form::before {
+	-webkit-transform: perspective(1000px) rotate3d(1, 0, 0, 0deg);
+	transform: perspective(1000px) rotate3d(1, 0, 0, 0deg);
+}
+
+.input__field--form:focus + .input__label--form,
+.input--filled .input__label--form {
+	pointer-events: none;
+}
+
+.input__field--form:focus + .input__label--form::after,
+.input--filled .input__label--form::after {
+	-webkit-transform: perspective(1000px) rotate3d(1, 0, 0, -90deg);
+	transform: perspective(1000px) rotate3d(1, 0, 0, -90deg);
+}
+
+// App Forms
+
+.btn-tall {
+  height: 60px;
+}
+
+.form-container {
+  width: calc(100%);
+
+  display: block;
+  line-height:0;
+  height: 0;
+  overflow: hidden;
+
+  padding: 0px;
+  margin: 0;
+  color: white;
+  -webkit-transition: height 1s, padding 1s;
+  transition: height 1s, padding 1s;
+}
+
+.form-primary {
+  @extend .shadow;
+  border-radius: 2px;
+  background: $blue;
+}
+
+.form-info {
+  @extend .shadow;
+  border-radius: 2px;
+  background: $light-blue;
+}
+
+.form-danger {
+  @extend .shadow;
+  border-radius: 2px;
+  background: $red;
+}
+
+.form-success {
+  @extend .shadow;
+  border-radius: 2px;
+  background: $green;
+}
+
+.form-left {
+  border-top-left-radius: 0px;
+}
+
+.form-right {
+  border-top-right-radius: 0px;
+}
+
+.form-buffer {
+  height: inherit;
+}
+
+.form {
+  height: inherit;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.form-input {
+  margin: 0 30px;
+  width: calc(100% - 150px);
+}
+
+.form-button {
+  padding-left: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 100%;
+  border-left: 1px solid #ddd;
+}
+.form-button:hover {
+  cursor: pointer;
+}
+
+.form-button-back {
+  padding-left: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 100%;
+  border-right: 1px solid #ddd;
+}
+.form-button-back:hover {
+  cursor: pointer;
+}
+
+// application index
+
+.table-container {
+  margin-top: 10px;
+  border: 1px solid #ddd;
+  border-radius: 2px;
+}
+
+
+.table-header {
+  padding: 10px;
+  text-align: center;
+  margin-bottom: 30px;
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.application-index-item:hover {
+  cursor: pointer;
+  color: white;
+  background-color: $light-blue !important;
+}
+
+// Application Page
+
+.progress-bar {
+  width: 100%;
+  height: 100px;
+  background: white;
+  color: $dark-font;
+  padding: 25px;
+  margin: 10px 0;
+}
+
+.progress-names {
+  display: flex;
+  justify-content: space-between;
+}
+
+.bar-background {
+  width: 100%;
+  height: 10px;
+  background-color: #eee;
+  margin: 10px 0;
+}
+
+.bar-filler {
+  width: 0px;
+  height: inherit;
+  background-color: $green;
+  -webkit-transition: width 1s;
+  transition: width 1s;
+}
+
+// Misc
+
+.shadow {
+  // box-shadow: 0 0 5px #888888;
+  box-shadow: none;
+}
+
+// Selector
