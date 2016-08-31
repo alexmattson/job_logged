@@ -5,7 +5,10 @@ import merge from 'lodash/merge';
 
 const nullState = {
   session: {errors: []},
-  applications: {}
+  applications: {
+    all: {},
+    current: {}
+  },
 };
 
 const configureStore = (inputs) => {

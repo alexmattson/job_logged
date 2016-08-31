@@ -16,6 +16,7 @@
     "eos": "node_modules/eos-redux/index.js"
   },
   "dependencies": {
-    "eos-redux": "^1.2.9"
+    "eos-redux": "^1.2.9",
+    "jquery": "^3.1.0"
   }
 }

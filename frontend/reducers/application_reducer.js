@@ -9,13 +9,13 @@ const ApplicationsReducer = (state = {}, action) => {
   let newState;
   switch(action.type){
     case RECEIVE_APPLICATIONS:
-      return action.applications;
+      return merge({}, state, {all: action.applications});
     case RECEIVE_APPLICATION:
-      const newApplication = {[action.application.id]: action.application};
-      return Object.assign({}, state, newApplication);
+      return merge({}, state, {current: action.application});
     case REMOVE_APPLICATION:
-      newState = Object.assign({}, state);
-      delete newState[action.application.id];
+      newState = merge({}, state);
+      newState['current'] = {};
+      delete newState['all'][action.application.id];
       return newState;
     case APPLICATION_ERROR:
       alert(action.error);

@@ -7,7 +7,7 @@ import { requestApplications,
        } from '../../actions/application_actions';
 
 const mapStateToProps = state => ({
-  applications: state.applications
+  applications: state.applications.all
 });
 
 const mapDispatchToProps = dispatch => ({

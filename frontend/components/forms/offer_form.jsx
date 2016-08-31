@@ -1,18 +1,18 @@
 import React from 'react';
 import { withRouter } from 'react-router';
+import merge from 'lodash/merge';
 
-
-class NewFrom extends React.Component {
+class RejectForm extends React.Component {
 	constructor(props){
 		super(props);
     this.state = {
       company: '',
-      position: ''
+      job_title: ''
     };
-    // this._newApplication = this._newApplication.bind(this);
     this.update = this.update.bind(this);
     this._setClass = this._setClass.bind(this);
     this._generateInput = this._generateInput.bind(this);
+		this.handleSubmit = this.handleSubmit.bind(this);
 	}
 
   _setClass(property) {
@@ -28,14 +28,14 @@ class NewFrom extends React.Component {
   }
 
   componentDidUpdate() {
-    let newButton = document.getElementById("new");
-    if (this.props.new) {
-      newButton.style.height = "60px";
-      document.getElementById("newForm").style.height = "200px";
+    let offerButton = document.getElementById("offer");
+    if (this.props.offer) {
+      offerButton.style.height = "60px";
+      document.getElementById("offerForm").style.height = "200px";
     } else {
-      if (newButton) {
-        newButton.style.height = "40px";
-        document.getElementById("newForm").style.height = "0px";
+      if (offerButton) {
+        offerButton.style.height = "40px";
+        document.getElementById("offerForm").style.height = "0px";
       }
     }
   }
@@ -48,25 +48,40 @@ class NewFrom extends React.Component {
           value={this.state[property]}
           onChange={this.update(property)} />
         <label className="input__label input__label--form"
-               for={property}>
+               htmlFor={property}>
           <span className="input__label-content input__label-content--form">
-            {property.toUpperCase()}
+            {this.humanize(property)}
           </span>
         </label>
       </div>
     );
   }
 
+	handleSubmit(e){
+		e.preventDefault();
+		const application = merge({}, this.state, {progress: 'application'});
+		this.props.createApplication({application});
+	}
+
+	humanize(str) {
+	  let frags = str.split('_');
+	  for (let i=0; i<frags.length; i++) {
+	    frags[i] = frags[i].charAt(0).toUpperCase() + frags[i].slice(1);
+	  }
+	  return frags.join(' ');
+	}
+
 	render() {
 		return (
-      <div className='form-container form-primary' id='newForm'>
+      <div className='form-container form-success form-right form-left'
+					 id='offerForm'>
         <div className='form-buffer'>
           <form className="content bgcolor-5 form">
             <section className='form-input'>
               {this._generateInput('company')}
-              {this._generateInput('position')}
+              {this._generateInput('job_title')}
             </section>
-            <div className='form-button'>
+            <div className='form-button' onClick={this.handleSubmit}>
               <span>Submit</span>
             </div>
           </form>
@@ -77,4 +92,4 @@ class NewFrom extends React.Component {
 
 }
 
-export default withRouter(NewFrom);
+export default withRouter(RejectForm);

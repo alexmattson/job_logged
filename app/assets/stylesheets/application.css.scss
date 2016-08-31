@@ -26,7 +26,10 @@ $red: #ff3850;
 $darker-red: #b04b40;
 $background-color: #edecec;
 $blue: #2196f3;
+$light-blue: #5bc0de;
 $green: #00c853;
+
+$dark-font: #333333;
 
 // body
 
@@ -121,9 +124,17 @@ body {
   background-image: url('https://s14.postimg.org/rs2hkrp19/image.png');
   background-repeat: no-repeat;
   background-size: 100% auto;
+  background-position: center;
   height: 250px;
   padding: 20px;
 }
+
+.main h1, h3 {
+  color: white;
+}
+// .main h1 {
+//   color: white;
+// }
 
 @media (max-width: 835px) {
   .main {
@@ -157,11 +168,27 @@ body {
   background-color: $blue;
 }
 
+.btn-info {
+  background-color: $light-blue;
+}
+
+.btn-info:focus {
+  background-color: $light-blue;
+}
+
 .btn-danger {
   background-color: $red;
 }
 
+.btn-danger:focus {
+  background-color: $red;
+}
+
 .btn-success {
+  background-color: $green;
+}
+
+.btn-success:focus {
   background-color: $green;
 }
 
@@ -172,8 +199,14 @@ body {
   border-radius: 2px;
 }
 
+.button-group {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
 .button-group button {
-  width: calc(33% - 4.75px);
+  width: calc(33.333333%);
   margin: 0 10px 10px 0;
   height:40px;
   position: relative;
@@ -187,7 +220,6 @@ body {
 }
 
 .button-group button:focus {
-  background-color: $blue;
   box-shadow: none;
   outline: 0 none;
   border-bottom-left-radius: 0px;
@@ -195,8 +227,17 @@ body {
 }
 
 .btn-full {
-  margin: 10px 0;
+  margin: 10px 0 0 0;
   width: calc(100%);
+  -webkit-transition: height 1s;
+  transition: height 1s;
+}
+
+.btn-full:focus {
+  box-shadow: none;
+  outline: 0 none;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
 }
 
 // Session Form
@@ -482,6 +523,32 @@ body {
   background: $blue;
 }
 
+.form-info {
+  @extend .shadow;
+  border-radius: 2px;
+  background: $light-blue;
+}
+
+.form-danger {
+  @extend .shadow;
+  border-radius: 2px;
+  background: $red;
+}
+
+.form-success {
+  @extend .shadow;
+  border-radius: 2px;
+  background: $green;
+}
+
+.form-left {
+  border-top-left-radius: 0px;
+}
+
+.form-right {
+  border-top-right-radius: 0px;
+}
+
 .form-buffer {
   height: inherit;
 }
@@ -514,9 +581,78 @@ body {
   cursor: pointer;
 }
 
+.form-button-back {
+  padding-left: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 100%;
+  border-right: 1px solid #ddd;
+}
+.form-button-back:hover {
+  cursor: pointer;
+}
+
+// application index
+
+.table-container {
+  margin-top: 10px;
+  border: 1px solid #ddd;
+  border-radius: 2px;
+}
+
+
+.table-header {
+  padding: 10px;
+  text-align: center;
+  margin-bottom: 30px;
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.application-index-item:hover {
+  cursor: pointer;
+  color: white;
+  background-color: $light-blue !important;
+}
+
+// Application Page
+
+.progress-bar {
+  width: 100%;
+  height: 100px;
+  background: white;
+  color: $dark-font;
+  padding: 25px;
+  margin: 10px 0;
+}
+
+.progress-names {
+  display: flex;
+  justify-content: space-between;
+}
+
+.bar-background {
+  width: 100%;
+  height: 10px;
+  background-color: #eee;
+  margin: 10px 0;
+}
+
+.bar-filler {
+  width: 0px;
+  height: inherit;
+  background-color: $green;
+  -webkit-transition: width 1s;
+  transition: width 1s;
+}
+
 // Misc
 
 .shadow {
   // box-shadow: 0 0 5px #888888;
   box-shadow: none;
 }
+
+// Selector

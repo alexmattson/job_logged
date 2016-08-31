@@ -32,7 +32,7 @@ import { requestApplications,
        fetchApplication(action.id, applicationSuccess);
        return next(action);
      case CREATE_APPLICATION:
-       createApplication(action.application, applicationSuccess, applicationErrored);
+       createApplication(action.application, applicationsSuccess, applicationErrored);
        return next(action);
      case UPDATE_APPLICATION:
        updateApplication(action.application, applicationSuccess)
