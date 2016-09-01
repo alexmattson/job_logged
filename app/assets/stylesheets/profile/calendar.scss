@@ -1,0 +1,22 @@
+$blue: #2196f3;
+
+.calendar {
+  background: white;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+.fc-event {
+  background-color: $blue !important;
+  border: none !important;
+  padding: 10px !important;
+
+}
+
+.fc-day-grid-event:hover {
+  cursor: pointer;
+}
+
+.fc button {
+  background: none;
+}

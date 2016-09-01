@@ -9,6 +9,7 @@ const nullState = {
     all: {},
     current: {}
   },
+  events: {}
 };
 
 const configureStore = (inputs) => {

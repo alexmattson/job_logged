@@ -30,6 +30,9 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'font-awesome-sass', '~> 4.6.2'
 
+gem 'fullcalendar-rails'
+gem 'momentjs-rails'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

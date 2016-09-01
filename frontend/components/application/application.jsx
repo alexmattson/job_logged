@@ -3,6 +3,7 @@ import { withRouter } from 'react-router';
 
 import ProgressBar from './progress_bar';
 import ApplicationButtonGroupContainer from './application_button_group_container';
+import EventContainer from '../event/event_container';
 
 class ApplicationIndex extends React.Component {
   constructor(props) {
@@ -11,6 +12,7 @@ class ApplicationIndex extends React.Component {
 
   componentDidMount() {
     this.props.requestApplication(this.props.routeParams.id);
+    this.props.requestApplicationEvents(this.props.routeParams.id);
   }
 
   render() {
@@ -21,7 +23,10 @@ class ApplicationIndex extends React.Component {
           <h3>{this.props.application.job_title}</h3>
         </div>
         <ApplicationButtonGroupContainer application={this.props.application} />
-        <ProgressBar progress={this.props.application.progress} />
+        <div className='modules-container'>
+          <ProgressBar progress={this.props.application.progress} />
+          <EventContainer />
+        </div>
       </div>
     );
   }

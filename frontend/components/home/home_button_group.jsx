@@ -40,7 +40,7 @@ class HomeButtonGroup extends React.Component {
           <button className="btn btn-primary btn-lg"
                   id='new'
                   onClick={this._toggle('new')}>
-            Sent
+            Add
           </button>
           <button className="btn btn-info btn-lg"
 									id='update'

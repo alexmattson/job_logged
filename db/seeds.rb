@@ -10,5 +10,12 @@
   Application.create(company: Faker::Company.name,
                      job_title: Faker::Company.profession,
                      progress: 'application',
-                     user_id: 2);
+                     user_id: 1);
+end
+
+50.times do
+  Event.create(title: Faker::Company.name,
+               date_time: Faker::Time.forward(23, :afternoon),
+               notes: 'I am not ready for this',
+               application_id: rand(10));
 end

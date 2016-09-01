@@ -1,0 +1,70 @@
+$blue: #2196f3;
+$light-blue: #5bc0de;
+
+.profile-main {
+  background: $blue !important;
+  padding: 0 !important;
+  display: flex;
+}
+
+@media (max-width: 960px) {
+  .profile-main {
+    flex-direction: column;
+    height: 500px;
+  }
+
+  .profile-main .right {
+    width: 100%;
+  }
+
+  .profile-main .left {
+    width: 100%;
+  }
+}
+
+.profile-main .left {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 50%;
+  padding: 30px;
+}
+
+.profile-main p {
+  color: white;
+  display: flex;
+  align-items: center;
+  margin: 0;
+}
+
+.profile-main span {
+  display: inline;
+  color: white;
+  margin: 0 5px;
+  font-size: 75px;
+}
+
+.profile-main h1 {
+  margin: 0 5px;
+}
+
+.profile-main .right {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  height: 100%;
+  position: relative;
+}
+
+.right .row {
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.right .box {
+  width: 33.33333%;
+  height: 125px;
+  border: 1px solid $light-blue;
+}
