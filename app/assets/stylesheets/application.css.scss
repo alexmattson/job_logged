@@ -221,9 +221,9 @@ body {
 }
 
 .btn-warning:focus {
-  background-color: $purple;
-  box-shadow: none;
-  outline: 0 none;
+  background-color: $purple !important;
+  box-shadow: none !important;
+  outline: 0 none !important;
 }
 
 .btn-warning:hover {
@@ -733,6 +733,13 @@ body {
 
 .event {
   padding: 10px;
+}
+
+.event-info {
+  overflow: scroll;
+  max-height: 100px;
+  -webkit-transition: max-height 1s;
+  transition: max-height 1s;
 }
 
 .event .date {

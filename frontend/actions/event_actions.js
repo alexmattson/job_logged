@@ -57,4 +57,4 @@ export const destroyEvent = event => ({
 export const eventError = error => ({
   type: EVENT_ERROR,
   error
-})
+});

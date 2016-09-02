@@ -7,19 +7,32 @@ import moment from 'moment';
 class NewEventForm extends React.Component {
 	constructor(props){
 		super(props);
-    this.nullState = {
-      title: '',
-			notes: '',
-			time: '12:00',
-			startDate: moment()
-    };
-		this.state = this.nullState;
+		this.state = this._formatEvent();
 
     this.update = this.update.bind(this);
     this._setClass = this._setClass.bind(this);
     this._generateInput = this._generateInput.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.handleChange = this.handleChange.bind(this);
+	}
+
+	_formatEvent() {
+		let date = new Date(this.props.event.date_time);
+		let dd = date.getDate();
+		let mm = date.getMonth()+1;
+		let yyyy = date.getFullYear();
+		let hour = date.getHours();
+		let min = date.getMinutes();
+		if (min < 10) {
+			min = `0${min}`;
+		}
+
+		return ({
+			title: this.props.event.title,
+			notes: this.props.event.notes,
+			time: `${hour}:${min}`,
+			startDate: moment(`${mm}/${dd}/${yyyy}`, 'MM-DD-YYYY')
+		});
 	}
 
   _setClass(property) {
@@ -35,12 +48,18 @@ class NewEventForm extends React.Component {
   }
 
   componentDidUpdate() {
-    let newEventButton = document.getElementById("newEvent");
-    if (this.props.newEvent) {
-      document.getElementById("newEventForm").style.height = "300px";
+    let editEventButton = document.getElementById(
+			`editEvent${this.props.event.id}`
+		);
+    if (this.props.editEvent) {
+      document.getElementById(
+				`editEvent${this.props.event.id}Form`
+			).style.height = "300px";
     } else {
-      if (newEventButton) {
-        document.getElementById("newEventForm").style.height = "0px";
+      if (editEventButton) {
+        document.getElementById(
+					`editEvent${this.props.event.id}Form`
+				).style.height = "0px";
       }
     }
   }
@@ -101,13 +120,13 @@ class NewEventForm extends React.Component {
 	handleSubmit(e){
 		e.preventDefault();
 		let event = {
+			id: this.props.event.id,
 			title: this.state.title,
 			date_time: this.state.startDate.format('l') + ' ' + this.state.time,
 			notes: this.state.notes,
 			application_id: this.props.applicationId
 		};
-		this.setState(this.nullState);
-		this.props.createEvent(event);
+		this.props.updateEvent(event);
 		this.props.toggleParent();
 	}
 
@@ -121,7 +140,8 @@ class NewEventForm extends React.Component {
 
 	render() {
 		return (
-      <div className='form-container form-default form-left' id='newEventForm'>
+      <div className='form-container form-default form-left'
+           id={`editEvent${this.props.event.id}Form`}>
         <div className='form-buffer'>
           <form className="content bgcolor-5 form">
 						<section className='form-input'>

@@ -19,4 +19,11 @@ $blue: #2196f3;
 
 .fc button {
   background: none;
+  border-bottom: 1px solid #ddd;
+}
+
+.calendar {
+  th, td {
+    border: none !important;
+  }
 }

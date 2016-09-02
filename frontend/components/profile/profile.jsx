@@ -1,5 +1,8 @@
 import React from 'react';
 import { hashHistory } from 'react-router';
+import { isEmpty } from 'lodash';
+
+import Header from './header';
 
 class Profile extends React.Component {
 	constructor(props){
@@ -13,6 +16,9 @@ class Profile extends React.Component {
 	}
 
 	componentWillReceiveProps(newProps) {
+		if (isEmpty(this.props.applications)) {
+			this.props.requestApplications();
+		}
 		if (newProps.events) {
 			let date = new Date();
 			let d = date.getDate();
@@ -45,30 +51,9 @@ class Profile extends React.Component {
 	render() {
 		return (
 			<div className='app-content'>
-				<div className='main shadow profile-main'>
-					<div className='left'>
-						<h1>{this.props.session.currentUser.username}</h1>
-						<p>Your job search had lasted <span>31</span> days</p>
-						<div></div>
-					</div>
-					<div className='right'>
-						<div className='row'>
-							<div className='box'></div>
-							<div className='box'></div>
-							<div className='box'></div>
-						</div>
-						<div className='row'>
-							<div className='box'></div>
-							<div className='box'></div>
-							<div className='box'></div>
-						</div>
-					</div>
-				</div>
-				<div>
-
+				<Header username={this.props.session.currentUser.username}
+								applications={this.props.applications}/>
 				<div id="calendar" className='calendar'></div>
-
-				</div>
       </div>
 		);
 	}

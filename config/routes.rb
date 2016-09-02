@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     resource :session, only: [:create, :destroy]
     resources :applications, only: [:create, :destroy, :update, :index, :show] do
       resources :events, only: [:create, :update, :destroy, :index]
+      resources :contact, only: [:create, :update, :index]
     end
     get '/events', to: 'events#filtered'
   end

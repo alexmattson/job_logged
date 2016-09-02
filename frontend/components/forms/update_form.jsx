@@ -36,7 +36,7 @@ class UpdateForm extends React.Component {
   componentDidUpdate() {
     let updateButton = document.getElementById("update");
     if (this.props.update) {
-      updateButton.style.height = "60px";
+      updateButton.style.height = "50px";
       document.getElementById("updateForm").style.height = "200px";
     } else {
       if (updateButton) {

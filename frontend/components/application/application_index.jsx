@@ -12,7 +12,8 @@ class ApplicationIndex extends React.Component {
     this.props.requestApplications();
   }
 
-  componentWillReceiveProps(newProps) {
+  componentDidUpdate(newProps) {
+    $('#myTable').DataTable();
   }
 
   createRoute(id) {
@@ -36,7 +37,7 @@ class ApplicationIndex extends React.Component {
         <div className='table-header'>
           <span>Applications</span>
         </div>
-        <table className="table table-striped">
+        <table className="table table-striped" id='myTable' >
           <thead>
             <tr>
               <th>Company</th>

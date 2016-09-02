@@ -3,6 +3,7 @@ import Event from './event';
 // Actions
 import { requestApplicationEvents,
          createEvent,
+         updateEvent,
          destroyEvent
        } from '../../actions/event_actions';
 
@@ -13,7 +14,9 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   requestApplicationEvents: (id) => dispatch(requestApplicationEvents(id)),
-  createEvent: (event) => dispatch(createEvent(event))
+  updateEvent: (event) => dispatch(updateEvent(event)),
+  createEvent: (event) => dispatch(createEvent(event)),
+  destroyEvent: (event) => dispatch(destroyEvent(event))
 });
 
 export default connect(

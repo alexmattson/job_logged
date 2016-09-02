@@ -7,6 +7,7 @@ class Application < ApplicationRecord
   #Associations
   belongs_to :user
   has_many :events
+  has_one :contanct, dependent: :destroy
 
   #Methods
 end

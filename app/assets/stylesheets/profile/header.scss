@@ -1,5 +1,6 @@
 $blue: #2196f3;
-$light-blue: #5bc0de;
+$lightblue: #51adf6;
+$darkblue: #0c7cd5;
 
 .profile-main {
   background: $blue !important;
@@ -7,20 +8,6 @@ $light-blue: #5bc0de;
   display: flex;
 }
 
-@media (max-width: 960px) {
-  .profile-main {
-    flex-direction: column;
-    height: 500px;
-  }
-
-  .profile-main .right {
-    width: 100%;
-  }
-
-  .profile-main .left {
-    width: 100%;
-  }
-}
 
 .profile-main .left {
   display: flex;
@@ -48,6 +35,10 @@ $light-blue: #5bc0de;
   margin: 0 5px;
 }
 
+.profile-main h2 {
+  color: white;
+}
+
 .profile-main .right {
   display: flex;
   flex-direction: column;
@@ -63,8 +54,31 @@ $light-blue: #5bc0de;
   width: 100%;
 }
 
+.right .dark {
+  background-color: $darkblue;
+}
+
 .right .box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   width: 33.33333%;
   height: 125px;
-  border: 1px solid $light-blue;
+}
+
+
+@media (max-width: 960px) {
+  .profile-main {
+    flex-direction: column;
+    height: 700px;
+  }
+
+  .profile-main .right {
+    width: 100%;
+  }
+
+  .profile-main .left {
+    width: 100%;
+  }
 }
