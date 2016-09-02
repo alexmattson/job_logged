@@ -30,7 +30,7 @@ class RejectForm extends React.Component {
   componentDidUpdate() {
     let offerButton = document.getElementById("offer");
     if (this.props.offer) {
-      offerButton.style.height = "60px";
+      offerButton.style.height = "50px";
       document.getElementById("offerForm").style.height = "200px";
     } else {
       if (offerButton) {

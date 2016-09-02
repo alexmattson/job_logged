@@ -1,0 +1,84 @@
+$blue: #2196f3;
+$lightblue: #51adf6;
+$darkblue: #0c7cd5;
+
+.profile-main {
+  background: $blue !important;
+  padding: 0 !important;
+  display: flex;
+}
+
+
+.profile-main .left {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 50%;
+  padding: 30px;
+}
+
+.profile-main p {
+  color: white;
+  display: flex;
+  align-items: center;
+  margin: 0;
+}
+
+.profile-main span {
+  display: inline;
+  color: white;
+  margin: 0 5px;
+  font-size: 75px;
+}
+
+.profile-main h1 {
+  margin: 0 5px;
+}
+
+.profile-main h2 {
+  color: white;
+}
+
+.profile-main .right {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  height: 100%;
+  position: relative;
+}
+
+.right .row {
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.right .dark {
+  background-color: $darkblue;
+}
+
+.right .box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 33.33333%;
+  height: 125px;
+}
+
+
+@media (max-width: 960px) {
+  .profile-main {
+    flex-direction: column;
+    height: 700px;
+  }
+
+  .profile-main .right {
+    width: 100%;
+  }
+
+  .profile-main .left {
+    width: 100%;
+  }
+}

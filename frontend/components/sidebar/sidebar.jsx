@@ -6,11 +6,16 @@ class SessionForm extends React.Component {
 	constructor(props){
 		super(props);
     this.home = this.home.bind(this);
+    this.profile = this.profile.bind(this);
     this.logout = this.logout.bind(this);
 	}
 
 	home() {
 		this.props.router.push('/');
+	}
+	
+	profile() {
+		this.props.router.push('/profile');
 	}
 
   logout() {
@@ -22,11 +27,11 @@ class SessionForm extends React.Component {
 		return (
 			<div className='sidebar' id='sidebar'>
         <ul>
-          <li id='home'>
+          <li id='home' onClick={this.home}>
             <i className="fa fa-home"></i>
-            <span onClick={this.home}>Home</span>
+            <span>Home</span>
           </li>
-          <li id='profile'>
+          <li id='profile' onClick={this.profile}>
             <i className="fa fa-user"></i>
             <span>Profile</span>
           </li>

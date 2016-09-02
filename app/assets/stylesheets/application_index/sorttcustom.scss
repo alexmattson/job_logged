@@ -1,0 +1,44 @@
+.dataTables_length {
+  padding: 10px;
+}
+
+.application-count {
+  display: inline !important;
+  width: 50px !important;
+  margin: 0 5px;
+}
+
+.dataTables_filter {
+  padding: 10px;
+}
+
+.dataTables_filter input {
+  border: none;
+  padding: 10px;
+  background: #ddd;
+}
+
+.dataTables_filter input:focus {
+  box-shadow: none;
+  outline: 0 none;
+}
+
+.dataTables_info {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  height: 56px;
+  padding: 10px;
+}
+
+.dataTables_paginate {
+  padding: 10px !important;
+}
+
+.current {
+  background: white !important;
+}
+
+.paginate_button:hover {
+  background: black !important;
+}

@@ -4,6 +4,10 @@ Rails.application.routes.draw do
   namespace :api, defaults: {format: :json} do
     resources :users, only: [:create]
     resource :session, only: [:create, :destroy]
-    resources :applications, only: [:create, :destroy, :update, :index, :show]
+    resources :applications, only: [:create, :destroy, :update, :index, :show] do
+      resources :events, only: [:create, :update, :destroy, :index]
+      resources :contact, only: [:create, :update, :index]
+    end
+    get '/events', to: 'events#filtered'
   end
 end

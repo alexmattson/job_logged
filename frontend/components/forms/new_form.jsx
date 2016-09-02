@@ -30,7 +30,7 @@ class NewFrom extends React.Component {
   componentDidUpdate() {
     let newButton = document.getElementById("new");
     if (this.props.new) {
-      newButton.style.height = "60px";
+      newButton.style.height = "50px";
       document.getElementById("newForm").style.height = "200px";
     } else {
       if (newButton) {

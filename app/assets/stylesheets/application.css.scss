@@ -12,6 +12,7 @@
  *
  *= require_tree .
  *= require_self
+ *= require fullcalendar
  */
 
  @import "bootstrap-sprockets";
@@ -28,6 +29,8 @@ $background-color: #edecec;
 $blue: #2196f3;
 $light-blue: #5bc0de;
 $green: #00c853;
+$purple: #c751ee;
+$dark-purple: #a644c7;
 
 $dark-font: #333333;
 
@@ -157,7 +160,20 @@ body {
 }
 
 .btn:hover {
-  color: white;
+}
+
+.btn-default {
+  background-color: $background-color;
+}
+
+.btn-default:hover {
+  color: #000;
+}
+
+.btn-default:focus {
+  background-color: $background-color;
+  box-shadow: none;
+  outline: 0 none;
 }
 
 .btn-primary {
@@ -166,6 +182,8 @@ body {
 
 .btn-primary:focus {
   background-color: $blue;
+  box-shadow: none;
+  outline: 0 none;
 }
 
 .btn-info {
@@ -174,6 +192,8 @@ body {
 
 .btn-info:focus {
   background-color: $light-blue;
+  box-shadow: none;
+  outline: 0 none;
 }
 
 .btn-danger {
@@ -182,6 +202,8 @@ body {
 
 .btn-danger:focus {
   background-color: $red;
+  box-shadow: none;
+  outline: 0 none;
 }
 
 .btn-success {
@@ -190,7 +212,24 @@ body {
 
 .btn-success:focus {
   background-color: $green;
+  box-shadow: none;
+  outline: 0 none;
 }
+
+.btn-warning {
+  background-color: $purple;
+}
+
+.btn-warning:focus {
+  background-color: $purple !important;
+  box-shadow: none !important;
+  outline: 0 none !important;
+}
+
+.btn-warning:hover {
+  background-color: $dark-purple;
+}
+
 
 .btn-lg, .btn-group-lg > .btn {
   padding: 10px 16px;
@@ -241,7 +280,6 @@ body {
 }
 
 // Session Form
-
 
 .session-form {
   position: absolute;
@@ -468,6 +506,14 @@ body {
 	transition: transform 0.3s;
 }
 
+.dark_form::before {
+	background: #ddd;
+}
+
+.dark_form::after {
+	background: #ccc;
+}
+
 .input__label-content--form {
 	padding: 0.75em 0;
 }
@@ -515,6 +561,13 @@ body {
   color: white;
   -webkit-transition: height 1s, padding 1s;
   transition: height 1s, padding 1s;
+}
+
+.form-default {
+  @extend .shadow;
+  border-radius: 2px;
+  background: white;
+  color: $dark-font
 }
 
 .form-primary {
@@ -602,7 +655,6 @@ body {
   border-radius: 2px;
 }
 
-
 .table-header {
   padding: 10px;
   text-align: center;
@@ -619,7 +671,15 @@ body {
 
 // Application Page
 
+.modules-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+// Progress Bar
+
 .progress-bar {
+  flex: 1 100%;
   width: 100%;
   height: 100px;
   background: white;
@@ -648,6 +708,56 @@ body {
   transition: width 1s;
 }
 
+// Events
+
+.event-container {
+  width: 50%;
+  background-color: white;
+}
+
+.event-container-header {
+  background-color: $purple;
+  width: 100%;
+  height: 75px;
+  padding: 20px;
+}
+
+.event-container-header h3 {
+  margin: 0;
+}
+
+.btn-event {
+  width: calc(100% - 20px);
+  margin: 10px;
+}
+
+.event {
+  padding: 10px;
+}
+
+.event-info {
+  overflow: scroll;
+  max-height: 100px;
+  -webkit-transition: max-height 1s;
+  transition: max-height 1s;
+}
+
+.event .date {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.event h2 {
+  margin: 0;
+}
+
+.detail .title {
+  color: $dark-font;
+  margin-bottom: 10px;;
+}
+
 // Misc
 
 .shadow {
@@ -655,4 +765,46 @@ body {
   box-shadow: none;
 }
 
-// Selector
+.dark-font {
+  color: $dark-font;
+}
+
+// Date Picker
+
+.react-datepicker__input-container {
+  width: 100%;
+}
+
+.date-picker {
+  width: 100%;
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #ddd;
+  background: #ddd;
+  font-weight: bold;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.date-picker-label {
+  font-size: 10px;
+  margin-left: 10px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.date-picker-time {
+  font-size: inherit;
+  line-height: 20px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: bold;
+  width: 100%;
+  padding: 10px;
+  background: #ddd;
+  border: none;
+  margin-bottom: 10px;
+}
+
+input[type=time]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    display: none;
+}
