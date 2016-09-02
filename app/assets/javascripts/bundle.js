@@ -58,7 +58,7 @@
 	
 	var _root2 = _interopRequireDefault(_root);
 	
-	var _store = __webpack_require__(392);
+	var _store = __webpack_require__(505);
 	
 	var _store2 = _interopRequireDefault(_store);
 	
@@ -44516,7 +44516,120 @@
 	exports.default = (0, _reactRouter.withRouter)(DeleteForm);
 
 /***/ },
-/* 392 */
+/* 392 */,
+/* 393 */,
+/* 394 */,
+/* 395 */,
+/* 396 */,
+/* 397 */,
+/* 398 */,
+/* 399 */,
+/* 400 */,
+/* 401 */,
+/* 402 */,
+/* 403 */,
+/* 404 */,
+/* 405 */,
+/* 406 */,
+/* 407 */,
+/* 408 */,
+/* 409 */,
+/* 410 */,
+/* 411 */,
+/* 412 */,
+/* 413 */,
+/* 414 */,
+/* 415 */,
+/* 416 */,
+/* 417 */,
+/* 418 */,
+/* 419 */,
+/* 420 */,
+/* 421 */,
+/* 422 */,
+/* 423 */,
+/* 424 */,
+/* 425 */,
+/* 426 */,
+/* 427 */,
+/* 428 */,
+/* 429 */,
+/* 430 */,
+/* 431 */,
+/* 432 */,
+/* 433 */,
+/* 434 */,
+/* 435 */,
+/* 436 */,
+/* 437 */,
+/* 438 */,
+/* 439 */,
+/* 440 */,
+/* 441 */,
+/* 442 */,
+/* 443 */,
+/* 444 */,
+/* 445 */,
+/* 446 */,
+/* 447 */,
+/* 448 */,
+/* 449 */,
+/* 450 */,
+/* 451 */,
+/* 452 */,
+/* 453 */,
+/* 454 */,
+/* 455 */,
+/* 456 */,
+/* 457 */,
+/* 458 */,
+/* 459 */,
+/* 460 */,
+/* 461 */,
+/* 462 */,
+/* 463 */,
+/* 464 */,
+/* 465 */,
+/* 466 */,
+/* 467 */,
+/* 468 */,
+/* 469 */,
+/* 470 */,
+/* 471 */,
+/* 472 */,
+/* 473 */,
+/* 474 */,
+/* 475 */,
+/* 476 */,
+/* 477 */,
+/* 478 */,
+/* 479 */,
+/* 480 */,
+/* 481 */,
+/* 482 */,
+/* 483 */,
+/* 484 */,
+/* 485 */,
+/* 486 */,
+/* 487 */,
+/* 488 */,
+/* 489 */,
+/* 490 */,
+/* 491 */,
+/* 492 */,
+/* 493 */,
+/* 494 */,
+/* 495 */,
+/* 496 */,
+/* 497 */,
+/* 498 */,
+/* 499 */,
+/* 500 */,
+/* 501 */,
+/* 502 */,
+/* 503 */,
+/* 504 */,
+/* 505 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -44527,11 +44640,11 @@
 	
 	var _redux = __webpack_require__(180);
 	
-	var _root_reducer = __webpack_require__(393);
+	var _root_reducer = __webpack_require__(506);
 	
 	var _root_reducer2 = _interopRequireDefault(_root_reducer);
 	
-	var _master_middleware = __webpack_require__(396);
+	var _master_middleware = __webpack_require__(510);
 	
 	var _master_middleware2 = _interopRequireDefault(_master_middleware);
 	
@@ -44557,7 +44670,7 @@
 	exports.default = configureStore;
 
 /***/ },
-/* 393 */
+/* 506 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -44568,11 +44681,11 @@
 	
 	var _redux = __webpack_require__(180);
 	
-	var _session_reducer = __webpack_require__(394);
+	var _session_reducer = __webpack_require__(507);
 	
 	var _session_reducer2 = _interopRequireDefault(_session_reducer);
 	
-	var _application_reducer = __webpack_require__(395);
+	var _application_reducer = __webpack_require__(508);
 	
 	var _application_reducer2 = _interopRequireDefault(_application_reducer);
 	
@@ -44586,7 +44699,7 @@
 	exports.default = RootReducer;
 
 /***/ },
-/* 394 */
+/* 507 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -44627,7 +44740,7 @@
 	exports.default = SessionReducer;
 
 /***/ },
-/* 395 */
+/* 508 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -44670,7 +44783,8 @@
 	exports.default = ApplicationsReducer;
 
 /***/ },
-/* 396 */
+/* 509 */,
+/* 510 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -44681,11 +44795,11 @@
 	
 	var _redux = __webpack_require__(180);
 	
-	var _application_middleware = __webpack_require__(397);
+	var _application_middleware = __webpack_require__(511);
 	
 	var _application_middleware2 = _interopRequireDefault(_application_middleware);
 	
-	var _session_middleware = __webpack_require__(399);
+	var _session_middleware = __webpack_require__(513);
 	
 	var _session_middleware2 = _interopRequireDefault(_session_middleware);
 	
@@ -44696,7 +44810,7 @@
 	exports.default = masterMiddleware;
 
 /***/ },
-/* 397 */
+/* 511 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -44705,7 +44819,7 @@
 	  value: true
 	});
 	
-	var _application_api_util = __webpack_require__(398);
+	var _application_api_util = __webpack_require__(512);
 	
 	var _application_actions = __webpack_require__(268);
 	
@@ -44752,7 +44866,7 @@
 	// Application Action
 
 /***/ },
-/* 398 */
+/* 512 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -44804,7 +44918,7 @@
 	};
 
 /***/ },
-/* 399 */
+/* 513 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -44815,7 +44929,7 @@
 	
 	var _session_actions = __webpack_require__(261);
 	
-	var _session_api_util = __webpack_require__(400);
+	var _session_api_util = __webpack_require__(514);
 	
 	var BenchesMiddleware = function BenchesMiddleware(_ref) {
 	  var getState = _ref.getState;
@@ -44852,7 +44966,7 @@
 	exports.default = BenchesMiddleware;
 
 /***/ },
-/* 400 */
+/* 514 */
 /***/ function(module, exports) {
 
 	'use strict';
