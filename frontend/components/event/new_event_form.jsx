@@ -102,7 +102,7 @@ class NewEventForm extends React.Component {
 		e.preventDefault();
 		let event = {
 			title: this.state.title,
-			date_time: this.state.startDate.format('l') + ' ' + this.state.time,
+			date_time: new Date(this.state.startDate.format('l') + ' ' + this.state.time).toString(),
 			notes: this.state.notes,
 			application_id: this.props.applicationId
 		};

@@ -3,15 +3,19 @@ import { RECEIVE_APPLICATIONS,
          REMOVE_APPLICATION,
          APPLICATION_ERROR
        } from '../actions/application_actions';
+import { RECEIVE_CONTACT,
+        CONTACT_ERROR
+      } from '../actions/contact_actions';
 import merge from 'lodash/merge';
 
 const ApplicationsReducer = (state = {}, action) => {
-  let newState;
+  let newState = merge({}, state);
   switch(action.type){
     case RECEIVE_APPLICATIONS:
       return merge({}, state, {all: action.applications});
     case RECEIVE_APPLICATION:
-      return merge({}, state, {current: action.application});
+      newState['current']['contact'] = {};
+      return merge({}, newState, {current: action.application});
     case REMOVE_APPLICATION:
       newState = merge({}, state);
       newState['current'] = {};
@@ -20,6 +24,19 @@ const ApplicationsReducer = (state = {}, action) => {
     case APPLICATION_ERROR:
       alert(action.error);
       return state;
+
+    case RECEIVE_CONTACT:
+      debugger
+      let id = action.contact.application_id;
+      let app = newState['all'][id];
+      app = merge({}, app, {contact: action.contact});
+      newState['all'] = merge({}, newState['all'], {[id]: app});
+      newState['current'] = app;
+      return newState;
+    case CONTACT_ERROR:
+      alert(action.error);
+      return state;
+
     default:
       return state;
   }

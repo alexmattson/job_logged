@@ -1,10 +1,12 @@
 class Api::ApplicationsController < ApplicationController
   def index
-    @applications = Application.where(user_id: current_user.id)
+    @applications = Application.includes(:contact)
+                               .where(user_id: current_user.id)
   end
 
   def show
-    @application = Application.find_by_id(params[:id])
+    @application = Application.includes(:contact)
+                              .find_by_id(params[:id])
   end
 
   def create

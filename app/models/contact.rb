@@ -2,7 +2,7 @@ class Contact < ApplicationRecord
   # Getters/Setters
 
   # Validations
-  validates :application
+  validates :application, presence: true
   validate :at_least_one_value
 
   def at_least_one_value

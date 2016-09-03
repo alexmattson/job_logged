@@ -4,35 +4,23 @@ import merge from 'lodash/merge';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
 
-class NewEventForm extends React.Component {
+class NewContactForm extends React.Component {
 	constructor(props){
 		super(props);
-		this.state = this._formatEvent();
+    this.nullState = {
+      firstName: '',
+			lastName: '',
+			phoneNumber: '',
+			email: '',
+			address: ''
+    };
+		this.state = this.nullState;
 
     this.update = this.update.bind(this);
     this._setClass = this._setClass.bind(this);
     this._generateInput = this._generateInput.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.handleChange = this.handleChange.bind(this);
-	}
-
-	_formatEvent() {
-		let date = new Date(this.props.event.date_time);
-		let dd = date.getDate();
-		let mm = date.getMonth()+1;
-		let yyyy = date.getFullYear();
-		let hour = date.getHours();
-		let min = date.getMinutes();
-		if (min < 10) {
-			min = `0${min}`;
-		}
-
-		return ({
-			title: this.props.event.title,
-			notes: this.props.event.notes,
-			time: `${hour}:${min}`,
-			startDate: moment(`${mm}/${dd}/${yyyy}`, 'MM-DD-YYYY')
-		});
 	}
 
   _setClass(property) {
@@ -48,18 +36,12 @@ class NewEventForm extends React.Component {
   }
 
   componentDidUpdate() {
-    let editEventButton = document.getElementById(
-			`editEvent${this.props.event.id}`
-		);
-    if (this.props.editEvent) {
-      document.getElementById(
-				`editEvent${this.props.event.id}Form`
-			).style.height = "300px";
+    let newContactButton = document.getElementById("newContact");
+    if (this.props.newContact) {
+      document.getElementById("newContactForm").style.height = "300px";
     } else {
-      if (editEventButton) {
-        document.getElementById(
-					`editEvent${this.props.event.id}Form`
-				).style.height = "0px";
+      if (newContactButton) {
+        document.getElementById("newContactForm").style.height = "0px";
       }
     }
   }
@@ -119,15 +101,16 @@ class NewEventForm extends React.Component {
 
 	handleSubmit(e){
 		e.preventDefault();
-		let event = {
-			id: this.props.event.id,
-			title: this.state.title,
-			date_time: new Date(this.state.startDate.format('l') + ' ' + this.state.time).toString(),
-			notes: this.state.notes,
+		let contact = {
+			fname: this.state.firstName,
+			lName: this.state.lastName,
+			phone: this.state.phoneNumber,
+			email: this.state.email,
+			address: this.state.address,
 			application_id: this.props.applicationId
 		};
-		this.props.updateEvent(event);
-		this.props.toggleParent();
+		this.props.createContact(contact);
+		// this.props.toggleParent();
 	}
 
 	humanize(str) {
@@ -140,15 +123,15 @@ class NewEventForm extends React.Component {
 
 	render() {
 		return (
-      <div className='form-container form-default form-left'
-           id={`editEvent${this.props.event.id}Form`}>
+      <div className='form-container form-default form-left' id='newContactForm'>
         <div className='form-buffer'>
           <form className="content bgcolor-5 form">
 						<section className='form-input'>
-              {this._generateInput('title')}
-							{this._datePicker()}
-							{this._timePicker()}
-							{this._generateInput('notes')}
+              {this._generateInput('firstName')}
+              {this._generateInput('lastName')}
+              {this._generateInput('phoneNumber')}
+              {this._generateInput('email')}
+              {this._generateInput('address')}
             </section>
             <div className='form-button' onClick={this.handleSubmit}>
               <span>Submit</span>
@@ -161,4 +144,4 @@ class NewEventForm extends React.Component {
 
 }
 
-export default withRouter(NewEventForm);
+export default withRouter(NewContactForm);

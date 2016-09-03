@@ -7,7 +7,9 @@ const nullState = {
   session: {errors: []},
   applications: {
     all: {},
-    current: {}
+    current: {
+      contact: {}
+    }
   },
   events: {}
 };

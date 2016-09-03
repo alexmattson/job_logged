@@ -16,7 +16,9 @@ class Api::EventsController < ApplicationController
   end
 
   def create
-    @event = Event.new(event_params)
+    formattedParams = event_params
+    formattedParams[:date_time] = DateTime.parse(event_params[:date_time])
+    @event = Event.new(formattedParams)
     if @event.save
 			render "api/events/show"
 		else
@@ -26,7 +28,9 @@ class Api::EventsController < ApplicationController
 
   def update
     @event = Event.find_by_id(event_params[:id])
-    if @event.update_attributes(event_params)
+    formattedParams = event_params
+    formattedParams[:date_time] = DateTime.parse(event_params[:date_time])
+    if @event.update_attributes(formattedParams)
       render "api/events/show"
     else
       render json: @event.errors.full_messages, status: 422

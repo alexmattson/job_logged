@@ -3,7 +3,7 @@ import merge from 'lodash/merge';
 import { isEmpty } from 'lodash';
 import { withRouter } from 'react-router';
 
-import NewEventFrom from './new_event_form';
+import NewEventForm from './new_event_form';
 import EditEventForm from './edit_event_form';
 import DeleteEventForm from './delete_event_form';
 
@@ -138,16 +138,18 @@ class Event extends React.Component {
                            applicationId={this.props.application.id}
                            destroyEvent={this.props.destroyEvent}
                            toggleParent={this._toggle(`deleteEvent${id}`)} />
-          <button className="btn btn-default btn-event"
-                  id={`editEvent` + id}
-                  onClick={this._toggle(`editEvent${id}`)}>
-            {this._text(`editEvent${id}`, 'Edit Event')}
-          </button>
-          <button className="btn btn-danger btn-event"
-                  id={`deleteEvent` + id}
-                  onClick={this._toggle(`deleteEvent${id}`)}>
-            {this._text(`deleteEvent${id}`, 'Delete Event')}
-          </button>
+          <div className='buttons'>
+            <button className="btn btn-default btn-event btn-1-2"
+              id={`editEvent` + id}
+              onClick={this._toggle(`editEvent${id}`)}>
+              {this._text(`editEvent${id}`, 'Edit Event')}
+            </button>
+            <button className="btn btn-danger btn-event btn-1-2"
+              id={`deleteEvent` + id}
+              onClick={this._toggle(`deleteEvent${id}`)}>
+              {this._text(`deleteEvent${id}`, 'Delete Event')}
+            </button>
+          </div>
         </div>
       );
     });
@@ -161,7 +163,7 @@ class Event extends React.Component {
         <div className='event-container-header'>
           <h3>Events</h3>
         </div>
-        <NewEventFrom newEvent={this.state.newEvent}
+        <NewEventForm newEvent={this.state.newEvent}
                       createEvent={this.props.createEvent}
                       applicationId={this.props.application.id}
                       toggleParent={this._toggle('newEvent')}/>

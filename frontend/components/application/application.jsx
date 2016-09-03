@@ -4,6 +4,7 @@ import { withRouter } from 'react-router';
 import ProgressBar from './progress_bar';
 import ApplicationButtonGroupContainer from './application_button_group_container';
 import EventContainer from '../event/event_container';
+import ContactContainer from '../contact/contact_container';
 
 class ApplicationIndex extends React.Component {
   constructor(props) {
@@ -25,6 +26,7 @@ class ApplicationIndex extends React.Component {
         <ApplicationButtonGroupContainer application={this.props.application} />
         <div className='modules-container'>
           <ProgressBar progress={this.props.application.progress} />
+          <ContactContainer />
           <EventContainer />
         </div>
       </div>
