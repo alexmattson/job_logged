@@ -20,12 +20,27 @@ class ApplicationIndex extends React.Component {
     this.props.router.push(`application/${id}`);
   }
 
+  className(progress) {
+    if (progress === 'offer') {
+      return 'application-index-item success';
+    } else
+    if (progress === 'rejected') {
+      return 'application-index-item danger';
+    } else
+    if (progress === 'application') {
+      return 'application-index-item';
+    } else {
+      return 'application-index-item warning';
+    }
+
+  }
+
   render() {
     let propApps = this.props.applications;
     let applications = Object.keys(this.props.applications).map(appId => (
       <tr key={appId}
           onClick={this.createRoute.bind(this, appId)}
-          className='application-index-item'>
+          className={this.className(propApps[appId].progress)}>
         <td>{propApps[appId].company}</td>
         <td>{propApps[appId].job_title}</td>
         <td>{propApps[appId].progress}</td>

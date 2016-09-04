@@ -25,7 +25,7 @@ class Header extends React.Component {
 		return (
       <header id="header" className="header">
         <div className="pull-left h-logo">
-          <img src='https://s18.postimg.org/s0k7wgl11/logo_light.png'
+          <img src='https://s16.postimg.io/4gxl6aq1x/logo_light.png'
                alt='Logo'
                className='logo' />
         </div>

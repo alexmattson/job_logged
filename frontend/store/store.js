@@ -4,7 +4,8 @@ import masterMiddleware from '../middleware/master_middleware';
 import merge from 'lodash/merge';
 
 const nullState = {
-  session: {errors: []},
+  session: {},
+  errors: [], 
   applications: {
     all: {},
     current: {

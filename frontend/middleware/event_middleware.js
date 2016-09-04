@@ -11,7 +11,6 @@ import { requestEvents,
          receiveEvent,
          receiveEvents,
          removeEvent,
-         eventError,
 // Event Constants
          REQUEST_EVENTS,
          REQUEST_APPLICATION_EVENTS,
@@ -20,12 +19,14 @@ import { requestEvents,
          UPDATE_EVENT,
          DESTROY_EVENT
        } from '../actions/event_actions';
+import { receiveErrors } from '../actions/error_actions';
+
 
  export default ({getState, dispatch}) => next => action => {
    const eventsSuccess = data => dispatch(receiveEvents(data));
    const eventSuccess = data => dispatch(receiveEvent(data));
    const eventRemoved = data => dispatch(removeEvent(data));
-   const eventErrored = data => dispatch(eventError(data.responseJSON));
+   const eventErrored = data => dispatch(receiveErrors(data));
    switch(action.type){
      case REQUEST_EVENTS:
        fetchEvents(action.filter, eventsSuccess);

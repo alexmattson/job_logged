@@ -1,6 +1,7 @@
 import { SessionConstants,
-         receiveCurrentUser,
-         receiveErrors } from '../actions/session_actions';
+         receiveCurrentUser
+        } from '../actions/session_actions';
+import { receiveErrors } from '../actions/error_actions';
 import { login, logout, signup } from '../util/session_api_util';
 
 const BenchesMiddleware = ({getState, dispatch}) => next => action => {

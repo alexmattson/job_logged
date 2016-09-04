@@ -4,6 +4,7 @@ import { withRouter } from 'react-router';
 
 import SidebarContainer from './sidebar/sidebar_container';
 import HeaderContainer from './header/header_container';
+import ErrorsContainer from './errors/errors_container';
 
 class App extends React.Component {
   constructor (props) {
@@ -23,6 +24,7 @@ class App extends React.Component {
           <SidebarContainer />
           {this.props.children}
         </div>
+        <ErrorsContainer />
       </div>
     );
   }

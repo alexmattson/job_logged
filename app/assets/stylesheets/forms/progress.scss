@@ -1,0 +1,31 @@
+$dark-font: #333333;
+
+
+.progress-form {
+  padding-top: 20px;
+}
+.progress-form .label {
+  position: relative;
+  top: 5px;
+  left: 5px;
+  font-size: 10px;
+  font-weight: lighter;
+}
+
+.progress-form .date-picker-time {
+  background: white;
+  color: $dark-font;
+}
+
+.progress-form .date-picker-label {
+  font-weight: lighter;
+}
+
+.progress-form .date-picker {
+  background: white;
+  color: $dark-font;
+}
+
+.progress-form .input__field {
+  margin-top: 20px;
+}

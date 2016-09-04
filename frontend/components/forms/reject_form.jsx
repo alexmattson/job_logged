@@ -13,6 +13,7 @@ class RejectForm extends React.Component {
     this._setClass = this._setClass.bind(this);
     this._generateInput = this._generateInput.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
+		this._formatAppOptions = this._formatAppOptions.bind(this);
 	}
 
   _setClass(property) {
@@ -31,13 +32,35 @@ class RejectForm extends React.Component {
     let rejectButton = document.getElementById("reject");
     if (this.props.reject) {
       rejectButton.style.height = "50px";
-      document.getElementById("rejectForm").style.height = "200px";
+      document.getElementById("rejectForm").style.height = "150px";
     } else {
       if (rejectButton) {
         rejectButton.style.height = "40px";
         document.getElementById("rejectForm").style.height = "0px";
       }
     }
+
+
+		if (this.props.applications) {
+			$( "#dropdownReject" ).select2({
+				templateResult: formatApplication
+			});
+
+			let apps = this.props.applications.all;
+			let formatApplication = (app) => {
+				if (!app.id) { return app.text; }
+				let id = app.id;
+				var $app = $(
+					'<div class="company">' +
+						apps[id].company +
+					'</div>' +
+					'<div>' +
+						apps[id].job_title +
+					'</div>'
+				);
+				return $app;
+			};
+		}
   }
 
   _generateInput(property) {
@@ -65,10 +88,27 @@ class RejectForm extends React.Component {
 
 	humanize(str) {
 	  let frags = str.split('_');
-	  for (let i=0; i<frags.length; i++) {
+	  for (let i=0; i < frags.length; i++) {
 	    frags[i] = frags[i].charAt(0).toUpperCase() + frags[i].slice(1);
 	  }
 	  return frags.join(' ');
+	}
+
+	_formatAppOptions() {
+		let apps = this.props.applications;
+		if (apps) {
+			apps = Object.keys(apps.all).map(id => {
+				return apps.all[id];
+			});
+			apps = apps.map(app => {
+				return (
+					<option value={app.id} key={`${app.company}${app.id}`}>
+						{app.company} | {app.job_title}
+					</option>
+				);
+			});
+		}
+		return apps;
 	}
 
 	render() {
@@ -76,10 +116,13 @@ class RejectForm extends React.Component {
       <div className='form-container form-danger form-right' id='rejectForm'>
         <div className='form-buffer'>
           <form className="content bgcolor-5 form">
-            <section className='form-input'>
-              {this._generateInput('company')}
-              {this._generateInput('job_title')}
-            </section>
+						<section className='form-input progress-form'>
+							<select className="progress-search"
+											id='dropdownReject' >
+								{this._formatAppOptions()}
+							</select>
+							<span className='label'>Application</span>
+						</section>
             <div className='form-button' onClick={this.handleSubmit}>
               <span>Submit</span>
             </div>

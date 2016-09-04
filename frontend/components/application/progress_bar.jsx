@@ -9,7 +9,7 @@ class ProgressBar extends React.Component {
   componentWillReceiveProps(newProps) {
     let progres = newProps.progress;
     let width;
-    if (progres === 'decision') {
+    if (progres === 'rejected' || progres === 'offer') {
       width = '100%';
     } else
     if (progres === 'on-site') {

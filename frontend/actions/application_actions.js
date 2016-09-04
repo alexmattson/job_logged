@@ -6,7 +6,6 @@ export const REMOVE_APPLICATION = "REMOVE_APPLICATION";
 export const CREATE_APPLICATION = "CREATE_APPLICATION";
 export const UPDATE_APPLICATION = "UPDATE_APPLICATION";
 export const DESTROY_APPLICATION = "DESTROY_APPLICATION";
-export const APPLICATION_ERROR = "APPLICATION_ERROR";
 
 export const requestApplications = () => ({
   type: REQUEST_APPLICATIONS
@@ -45,9 +44,4 @@ export const updateApplication = application => ({
 export const destroyApplication = application => ({
   type: DESTROY_APPLICATION,
   application
-});
-
-export const applicationError = error => ({
-  type: APPLICATION_ERROR,
-  error
 });

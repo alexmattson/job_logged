@@ -48,6 +48,7 @@ $dark-font: #333333;
 
 .event .buttons {
   display: flex;
+  justify-content: flex-end;
 }
 
 .buttons .btn-danger {

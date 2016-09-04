@@ -1,0 +1,16 @@
+$red: #ff3850;
+
+// Header
+
+.header {
+  background: $red;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 25px;
+  height: 250px;
+}
+
+.logo {
+  height: 100px;
+}

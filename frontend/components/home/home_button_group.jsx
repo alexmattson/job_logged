@@ -57,8 +57,10 @@ class HomeButtonGroup extends React.Component {
 								 createApplication={this.props.createApplication}/>
 				<UpdateForm update={this.state.update}
 										applications={this.props.applications}
-										updateApplication={this.props.updateApplication}/>
-				<RejectForm reject={this.state.reject} />
+										updateApplication={this.props.updateApplication}
+										createEvent={this.props.createEvent}/>
+				<RejectForm reject={this.state.reject}
+										applications={this.props.applications}/>
         <button className="btn btn-success btn-lg btn-full"
 								id='offer'
 								onClick={this._toggle('offer')}>

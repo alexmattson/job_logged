@@ -41,18 +41,6 @@ class SessionForm extends React.Component {
 		}
 	}
 
-	renderErrors(){
-		return(
-			<ul>
-				{this.props.errors.map( (error, i) => (
-					<li key={`error-${i}`}>
-						{error}
-					</li>
-				))}
-			</ul>
-		);
-	}
-
 	_setClass(property) {
 		if (this.state[property] === '') {
 			return "input input--minoru";
@@ -88,7 +76,6 @@ class SessionForm extends React.Component {
 			<section className='session-form'>
 				<h1>Job Application Management Made Easy</h1>
 				<h3>because managing your job search shouldn't be a full time job</h3>
-				{ this.renderErrors() }
 					<form className="content bgcolor-5" onSubmit={this.handleSubmit}>
 						<div className={this._setClass('username')}>
 							<input className="input__field input__field--yoko"

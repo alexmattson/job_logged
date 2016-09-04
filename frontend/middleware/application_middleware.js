@@ -10,7 +10,6 @@ import { requestApplications,
          receiveApplication,
          receiveApplications,
          removeApplication,
-         applicationError,
 // Application Constants
          REQUEST_APPLICATIONS,
          REQUEST_APPLICATION,
@@ -18,12 +17,13 @@ import { requestApplications,
          UPDATE_APPLICATION,
          DESTROY_APPLICATION
        } from '../actions/application_actions';
+import { receiveErrors } from '../actions/error_actions';
 
  export default ({getState, dispatch}) => next => action => {
    const applicationsSuccess = data => dispatch(receiveApplications(data));
    const applicationSuccess = data => dispatch(receiveApplication(data));
    const applicationRemoved = data => dispatch(removeApplication(data));
-   const applicationErrored = data => dispatch(applicationError(data.responseJSON));
+   const applicationErrored = data => dispatch(receiveErrors(data));
    switch(action.type){
      case REQUEST_APPLICATIONS:
        fetchApplications(applicationsSuccess);

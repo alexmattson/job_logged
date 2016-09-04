@@ -142,12 +142,12 @@ class Event extends React.Component {
             <button className="btn btn-default btn-event btn-1-2"
               id={`editEvent` + id}
               onClick={this._toggle(`editEvent${id}`)}>
-              {this._text(`editEvent${id}`, 'Edit Event')}
+              {this._text(`editEvent${id}`, 'Edit')}
             </button>
             <button className="btn btn-danger btn-event btn-1-2"
               id={`deleteEvent` + id}
               onClick={this._toggle(`deleteEvent${id}`)}>
-              {this._text(`deleteEvent${id}`, 'Delete Event')}
+              {this._text(`deleteEvent${id}`, 'Delete')}
             </button>
           </div>
         </div>

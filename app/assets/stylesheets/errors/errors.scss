@@ -1,0 +1,16 @@
+$red: #ff3850;
+
+.errors {
+  position: absolute;
+}
+
+.error {
+  background: $red;
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 2s ease-in-out;
+  transition-delay: 1s;
+  padding: 15px 30px;
+  border-radius: 2px;
+  color: white;
+}
