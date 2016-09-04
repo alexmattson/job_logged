@@ -11,6 +11,8 @@ class SessionForm extends React.Component {
 		};
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this._setClass = this._setClass.bind(this);
+		this.loginGuest = this.loginGuest.bind(this);
+		this.fillInput = this.fillInput.bind(this);
 	}
 
 	componentDidUpdate(){
@@ -71,6 +73,30 @@ class SessionForm extends React.Component {
 		}
 	}
 
+	fillInput(input, str, n = 1) {
+		setTimeout(()=>{
+			if (n < str.length) {
+				this.fillInput(input, str, n + 1);
+			}
+			this.setState({[input]: str.slice(0, n)});
+		}, 350);
+	}
+
+	loginGuest(e) {
+		e.preventDefault();
+		this.setState({username: '', password: ''});
+		hashHistory.push('/login');
+
+		this.fillInput('username', 'guest');
+		setTimeout(()=>{
+			this.fillInput('password', 'password');
+			setTimeout(()=>{
+				const user = this.state;
+				this.props.processForm({user});
+			}, 3500);
+		}, 1750);
+	}
+
 	render() {
 		return (
 			<section className='session-form'>
@@ -98,7 +124,13 @@ class SessionForm extends React.Component {
 							</label>
 						</div>
 						{ this._confirmPassword() }
-						<button className="btn btn-primary btn-lg session-submit">{ this.props.formType }</button>
+						<button className="btn btn-primary btn-lg session-submit margin-right">
+							{ this.props.formType }
+						</button>
+						<button className="btn btn-success btn-lg session-submit"
+										onClick={this.loginGuest}>
+							Guest
+						</button>
 						<div className="m-t-20">
 							{ this.navLink() }
 						</div>

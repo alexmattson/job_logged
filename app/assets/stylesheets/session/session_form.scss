@@ -13,7 +13,7 @@
   align-items: center;
   height: calc(100% - 150px) ;
   width: 100%;
-  padding: 30px;
+  padding-top: 30px;
 }
 
 @media (max-height: 700px) {
@@ -37,13 +37,18 @@
 
 .session-form .content {
   width: 400px;
-  padding: 30px;
+  padding: 25px 30px;
+  background-color:rgba(255,255,255,0.95);
+  border-radius: 2px;
+  margin-top: 30px;
 }
 
 .session-submit {
-  width: 50%;
+  width: calc(50% - 5px);
 }
-.input {
+
+.margin-right {
+  margin-right: 10px;
 }
 
 .input__field {
