@@ -6,11 +6,21 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-20.times do
+User.create(username: 'guest', password: 'password', created_at: 5.days.ago)
+
+progress = ['application',
+            'application',
+            'application', 
+            'phone',
+            'on-site',
+            'offer',
+            'rejected']
+30.times do
   Application.create(company: Faker::Company.name,
                      job_title: Faker::Company.profession,
-                     progress: 'application',
-                     user_id: 1);
+                     progress: progress.sample,
+                     user_id: 1,
+                     created_at: Faker::Date.between(5.days.ago, Date.today));
 end
 
 Application.all.each do |app|
@@ -22,9 +32,12 @@ Application.all.each do |app|
                  application_id: app.id)
 end
 
-50.times do
-  Event.create(title: Faker::Company.name,
+title = ['Application Update',
+         'Phone interview',
+         'On-site Interview']
+30.times do
+  Event.create(title: title.sample,
                date_time: Faker::Time.forward(23, :afternoon),
                notes: 'I am not ready for this',
-               application_id: rand(10));
+               application_id: rand(20));
 end

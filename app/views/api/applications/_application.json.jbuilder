@@ -1,5 +1,5 @@
 json.extract! application,
-  :id, :company, :job_title, :progress, :user_id
+  :id, :company, :job_title, :progress, :user_id, :created_at
 
 if application.contact
   json.contact do

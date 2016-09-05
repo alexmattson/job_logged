@@ -1,5 +1,7 @@
 import React from 'react';
 
+import PieChart from './pie_chart';
+
 class Header extends React.Component {
 	constructor(props){
 		super(props);
@@ -12,27 +14,44 @@ class Header extends React.Component {
     return (
       <div className='right'>
         <div className='row'>
-          {this.applicationsSent()}
-          {this.responsesReceived()}
-          {this.offersReceived()}
+					<div className='box'>
+		        <h2>{this.applicationsSent()}</h2>
+		        <p>Applications Sent</p>
+		      </div>
+					<div className='box dark'>
+						<h2>{this.responsesReceived()}</h2>
+						<p>Responses</p>
+					</div>
+					<div className='box'>
+						<h2>{this.offersReceived()}</h2>
+						<p>Offers</p>
+					</div>
         </div>
         <div className='row'>
-          <div className='box dark'></div>
-          <div className='box'></div>
-          <div className='box dark'></div>
+          <PieChart percent={this.appPercentage()}
+										text='Compared to Others'
+										dark={true} />
+					<PieChart percent={this.responsePercentage()}
+										text='Response Percentage'/>
+					<PieChart percent={this.offerPercentage()}
+										text='Offer Percentage'
+										dark={true}/>
         </div>
       </div>
     );
   }
 
+	appPercentage() {
+		return Math.round((this.applicationsSent() / 1000) * 100);
+	}
+
   applicationsSent() {
-    return (
-      <div className='box'>
-        <h2>{Object.keys(this.props.applications).length}</h2>
-        <p>Applications Sent</p>
-      </div>
-    );
+    return Object.keys(this.props.applications).length;
   }
+
+	responsePercentage() {
+		return Math.round((this.responsesReceived() / this.applicationsSent()) * 100) || 0;
+	}
 
 	responsesReceived() {
 		let responses = 0;
@@ -42,12 +61,11 @@ class Header extends React.Component {
 				responses += 1;
 			}
 		});
-		return (
-			<div className='box dark'>
-				<h2>{responses}</h2>
-				<p>Responses</p>
-			</div>
-		);
+		return responses;
+	}
+
+	offerPercentage() {
+		return Math.round((this.offersReceived() / this.applicationsSent()) * 100) || 0;
 	}
 
 	offersReceived() {
@@ -58,12 +76,7 @@ class Header extends React.Component {
 				offers += 1;
 			}
 		});
-		return (
-			<div className='box'>
-				<h2>{offers}</h2>
-				<p>Offers</p>
-			</div>
-		);
+		return offers;
 	}
 
 	jobSearchLength() {

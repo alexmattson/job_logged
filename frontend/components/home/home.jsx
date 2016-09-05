@@ -16,7 +16,8 @@ class Home extends React.Component {
 	render() {
 		return (
 			<div className='app-content'>
-				<ApplicationChart />
+				<ApplicationChart applications={this.props.applications.all}
+					 								session={this.props.session}/>
 				<HomeButtonGroupContiner />
 				<div>
 					<ApplicationIndexContainer />
