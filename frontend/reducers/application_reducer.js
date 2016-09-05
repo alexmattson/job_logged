@@ -26,17 +26,11 @@ const ApplicationsReducer = (state = {}, action) => {
       return state;
 
     case RECEIVE_CONTACT:
-      debugger
       let id = action.contact.application_id;
-      let app = newState['all'][id];
+      let app = newState['current'];
       app = merge({}, app, {contact: action.contact});
-      newState['all'] = merge({}, newState['all'], {[id]: app});
-      newState['current'] = app;
+      newState = merge({}, state, {current: app});
       return newState;
-    case CONTACT_ERROR:
-      alert(action.error);
-      return state;
-
     default:
       return state;
   }

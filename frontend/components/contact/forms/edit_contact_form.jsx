@@ -1,20 +1,14 @@
 import React from 'react';
 import { withRouter } from 'react-router';
 import merge from 'lodash/merge';
+
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
 
-class NewContactForm extends React.Component {
+class EditContactForm extends React.Component {
 	constructor(props){
 		super(props);
-    this.nullState = {
-      firstName: '',
-			lastName: '',
-			phoneNumber: '',
-			email: '',
-			address: ''
-    };
-		this.state = this.nullState;
+    this.state = this._formatContact();
 
     this.update = this.update.bind(this);
     this._setClass = this._setClass.bind(this);
@@ -22,13 +16,46 @@ class NewContactForm extends React.Component {
 		this.handleSubmit = this.handleSubmit.bind(this);
 	}
 
+	_formatContact() {
+		let contact = this.props.application.contact;
+		return ({
+			firstName: contact.fname || '',
+			lastName: contact.lname || '',
+			phoneNumber: contact.phone || '',
+			email: contact.email || '',
+			address: contact.address || '',
+			submit: false
+		});
+	}
+
+	componentWillReceiveProps(newProps) {
+		if (this.state.submit) {
+			this.setState({submit: false});
+			if (newProps.errors.length < 1){
+				$.notify('Contact Updated', {
+					position:'bottom left',
+					className: 'success'
+				});
+
+				// Reset page elements
+				this.props.toggleParent();
+			}
+		} else {
+			this.state = this._formatContact();
+		}
+	}
+
   componentDidUpdate(newProps) {
-    let newContactButton = document.getElementById("newContact");
-    if (this.props.newContact) {
-      document.getElementById("newContactForm").style.height = "300px";
+    let editContactButton = document.getElementById("editContact");
+    if (this.props.editContact) {
+      document.getElementById("contactInfo").style.height = "0px";
+      document.getElementById("contactInfo").style.padding = "0px 20px";
+      document.getElementById("editContactForm").style.height = "325px";
     } else {
-      if (newContactButton) {
-        document.getElementById("newContactForm").style.height = "0px";
+      if (editContactButton) {
+				document.getElementById("contactInfo").style.height = "170px";
+				document.getElementById("contactInfo").style.padding = "20px 20px";
+        document.getElementById("editContactForm").style.height = "0px";
       }
     }
   }
@@ -74,8 +101,9 @@ class NewContactForm extends React.Component {
 
 	handleSubmit(e){
 		e.preventDefault();
-
+		this.setState({submit: true});
 		let contact = {
+			id: this.props.application.contact.id,
 			fname: this.state.firstName,
 			lname: this.state.lastName,
 			phone: this.state.phoneNumber,
@@ -83,14 +111,13 @@ class NewContactForm extends React.Component {
 			address: this.state.address,
 			application_id: this.props.applicationId
 		};
-		this.props.createContact(contact);
-
-		this.props.toggleParent();
+		this.props.updateContact(contact);
 	}
 
 	render() {
 		return (
-      <div className='form-container form-default form-left' id='newContactForm'>
+      <div className='form-container form-default form-left'
+					 id='editContactForm'>
         <div className='form-buffer'>
           <form className="content bgcolor-5 form">
 						<section className='form-input'>
@@ -111,4 +138,4 @@ class NewContactForm extends React.Component {
 
 }
 
-export default withRouter(NewContactForm);
+export default withRouter(EditContactForm);

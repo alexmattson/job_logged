@@ -21,19 +21,34 @@ $light-blue: #5bc0de;
   background: $light-blue;
 }
 
+.contact-info-container {
+  padding: 20px 20px;
+  overflow: hidden;
+  height: 170px;
+  -webkit-transition: height 1s, padding 1s;
+  transition: height 1s, padding 1s;
+}
+
 .contact-info {
   display: flex;
   flex-direction: row;
   font-size: 16px;
-  padding: 20px;
-  height: 150px
+  height: 150px;
 }
 
 .contact-info .column {
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
+}
+
+.contact-info .left-column *  {
+  margin-bottom: 10px;
+}
+
+.contact-info .right-column * {
+  margin-bottom: 15px;
 }
 
 .contact-info span {

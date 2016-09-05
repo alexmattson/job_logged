@@ -8,11 +8,12 @@ export const createContact = function(contact, success, error){
   });
 };
 
-export const updateContact = function(contact, success){
+export const updateContact = function(contact, success, error){
   $.ajax({
     method: 'PATCH',
-    url: `api/contacts/${contact.id}`,
+    url: `api/applications/${contact.application_id}/contacts/${contact.id}`,
     data: {contact},
-    success
+    success,
+    error
   });
 };

@@ -201,13 +201,15 @@ class EditEventForm extends React.Component {
 	handleSubmit(e){
 		e.preventDefault();
 		this.setState({submit: true});
-		let event = {
-			id: this.props.event.id,
-			title: this.state.title,
-			date_time: new Date(this.state.startDate.format('l') + ' ' + this.state.time).toString(),
-			notes: this.state.notes,
-			application_id: this.props.applicationId,
-			event_type: this.state.progress
+		debugger
+		let contact = {
+			id: this.props.application.contact.id,
+			lname: this.state.firstName,
+			fname: this.state.lastName,
+			phone: this.state.phoneNumer,
+			email: this.state.email,
+			address: this.state.address,
+			application_id: this.props.applicationId
 		};
 		this.props.updateEvent(event);
 	}

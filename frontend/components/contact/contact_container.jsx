@@ -6,6 +6,7 @@ import { updateContact,
        } from '../../actions/contact_actions';
 
 const mapStateToProps = state => ({
+  errors: state.errors,
   application: state.applications.current,
   contact: state.applications.current.contact
 });

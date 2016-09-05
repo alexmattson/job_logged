@@ -25,6 +25,7 @@ class Api::ContactsController < ApplicationController
                                     :phone,
                                     :email,
                                     :address,
-                                    :application_id)
+                                    :application_id,
+                                    :id)
   end
 end
