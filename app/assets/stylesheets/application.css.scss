@@ -10,6 +10,7 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
+ *
  *= require fullcalendar
  *= require select2
  *= require select2-bootstrap
@@ -67,7 +68,7 @@ h3 {
 
 .sidebar li {
   list-style-type: none;
-  padding: 5px;
+  padding: 20px 0px;
 }
 
 .sidebar li:hover {
@@ -453,7 +454,9 @@ h3 {
 }
 
 .form-container {
-  width: calc(100%);
+  transition: all 1s;
+
+  width: 100%;
 
   display: block;
   line-height:0;
@@ -463,9 +466,15 @@ h3 {
   padding: 0px;
   margin: 0;
   color: white;
-  -webkit-transition: height 1s, padding 1s;
-  transition: height 1s, padding 1s;
+  // -webkit-transition: height 1s, padding 1s;
+  // transition: height 1s, padding 1s;
+
+  &.expand {
+    height: 200px
+  }
+
 }
+
 
 .form-default {
   @extend .shadow;
@@ -567,7 +576,7 @@ h3 {
   font-size: 24px;
 }
 
-.application-index-item:hover {
+.table tr:hover td {
   cursor: pointer;
   color: white;
   background-color: $light-blue !important;

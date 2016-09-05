@@ -45,7 +45,7 @@ class NewFrom extends React.Component {
     let newButton = document.getElementById("new");
     if (this.props.new) {
       newButton.style.height = "50px";
-      document.getElementById("newForm").style.height = "200px";
+      document.getElementById("newForm").style.height = '200px';
     } else {
       if (newButton) {
         newButton.style.height = "40px";
@@ -80,7 +80,7 @@ class NewFrom extends React.Component {
 
 	humanize(str) {
 	  let frags = str.split('_');
-	  for (let i=0; i<frags.length; i++) {
+	  for (let i=0; i < frags.length; i++) {
 	    frags[i] = frags[i].charAt(0).toUpperCase() + frags[i].slice(1);
 	  }
 	  return frags.join(' ');

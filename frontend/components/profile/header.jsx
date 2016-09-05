@@ -13,8 +13,8 @@ class Header extends React.Component {
       <div className='right'>
         <div className='row'>
           {this.applicationsSent()}
-          <div className='box dark'></div>
-          <div className='box'></div>
+          {this.responsesReceived()}
+          {this.offersReceived()}
         </div>
         <div className='row'>
           <div className='box dark'></div>
@@ -34,13 +34,55 @@ class Header extends React.Component {
     );
   }
 
+	responsesReceived() {
+		let responses = 0;
+		let apps = this.props.applications;
+		Object.keys(apps).forEach(id => {
+			if (apps[id].progress !== 'application') {
+				responses += 1;
+			}
+		});
+		return (
+			<div className='box dark'>
+				<h2>{responses}</h2>
+				<p>Responses</p>
+			</div>
+		);
+	}
+
+	offersReceived() {
+		let offers = 0;
+		let apps = this.props.applications;
+		Object.keys(apps).forEach(id => {
+			if (apps[id].progress === 'offer') {
+				offers += 1;
+			}
+		});
+		return (
+			<div className='box'>
+				<h2>{offers}</h2>
+				<p>Offers</p>
+			</div>
+		);
+	}
+
+	jobSearchLength() {
+		let signUp = new Date(this.props.user.created_at);
+		let today = new Date();
+		return(
+			<span>
+				{Math.round((today - signUp) / 1000 / 60 / 60 / 24)}
+		 	</span>
+		);
+	}
+
 	render() {
 		return (
 			<div className='main shadow profile-main'>
 
 				<div className='left'>
-					<h1>{this.props.username}</h1>
-					<p>Your job search had lasted <span>31</span> days</p>
+					<h1>{this.props.user.username}</h1>
+					<p>Your job search has lasted about {this.jobSearchLength()} days</p>
 					<div></div>
 				</div>
         {this.stats()}

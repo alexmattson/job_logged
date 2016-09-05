@@ -51,7 +51,7 @@ class Profile extends React.Component {
 	render() {
 		return (
 			<div className='app-content'>
-				<Header username={this.props.session.currentUser.username}
+				<Header user={this.props.session.currentUser}
 								applications={this.props.applications}/>
 				<div id="calendar" className='calendar'></div>
       </div>

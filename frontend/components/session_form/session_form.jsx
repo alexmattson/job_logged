@@ -77,7 +77,7 @@ class SessionForm extends React.Component {
 		setTimeout(()=>{
 			if (n < str.length) { this.fillInput(input, str, n + 1); }
 			this.setState({[input]: str.slice(0, n)});
-		}, 350);
+		}, 200);
 	}
 
 	loginGuest(e) {
@@ -91,8 +91,8 @@ class SessionForm extends React.Component {
 			setTimeout(()=>{
 				const user = this.state;
 				this.props.processForm({user});
-			}, 3500);
-		}, 1750);
+			}, 1800);
+		}, 1000);
 	}
 
 	render() {
