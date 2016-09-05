@@ -6,7 +6,8 @@ import { createApplication,
 import { createEvent } from '../../actions/event_actions';
 
 const mapStateToProps = state => ({
-  applications: state.applications
+  applications: state.applications,
+  errors: state.errors
 });
 
 const mapDispatchToProps = dispatch => ({

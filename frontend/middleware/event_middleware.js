@@ -41,7 +41,7 @@ import { receiveErrors } from '../actions/error_actions';
        createEvent(action.event, eventSuccess, eventErrored);
        return next(action);
      case UPDATE_EVENT:
-       updateEvent(action.event, eventSuccess);
+       updateEvent(action.event, eventSuccess, eventErrored);
        return next(action);
      case DESTROY_EVENT:
        destroyEvent(action.event, eventRemoved);

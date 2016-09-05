@@ -2,12 +2,14 @@ import React from 'react';
 import { withRouter } from 'react-router';
 import merge from 'lodash/merge';
 
-class RejectForm extends React.Component {
+class EditForm extends React.Component {
 	constructor(props){
 		super(props);
     this.state = {
       company: '',
-      job_title: ''
+      job_title: '',
+			submit: false,
+			needToSet: true
     };
     this.update = this.update.bind(this);
     this._setClass = this._setClass.bind(this);
@@ -15,30 +17,51 @@ class RejectForm extends React.Component {
 		this.handleSubmit = this.handleSubmit.bind(this);
 	}
 
-  _setClass(property) {
-    if (this.state[property] === '') {
-      return "";
-    } else {
-      return "input--filled";
-    }
-  }
+	componentWillReceiveProps(newProps) {
+		if (this.state.submit) {
+			this.setState({submit: false});
+			if (newProps.errors.length < 1){
+				$.notify('Application Updated', {
+					position:'bottom left',
+					className: 'success'
+				});
+				this.props.toggleParent();
+			}
+		}
+	}
 
-  update(field){
-    return e => { this.setState({[field]: e.currentTarget.value }); };
-  }
+  componentDidUpdate(newProps) {
+		if (this.state.needToSet && newProps.application.id) {
+			this.setState({
+				company: newProps.application.company,
+				job_title: newProps.application.job_title,
+				needToSet: false
+			});
+		}
 
-  componentDidUpdate() {
-    let offerButton = document.getElementById("offer");
-    if (this.props.offer) {
-      offerButton.style.height = "50px";
-      document.getElementById("offerForm").style.height = "200px";
+    let editButton = document.getElementById("edit");
+    if (this.props.edit) {
+      editButton.style.height = "50px";
+      document.getElementById("editForm").style.height = "200px";
     } else {
-      if (offerButton) {
-        offerButton.style.height = "40px";
-        document.getElementById("offerForm").style.height = "0px";
+      if (editButton) {
+        editButton.style.height = "40px";
+        document.getElementById("editForm").style.height = "0px";
       }
     }
   }
+
+	_setClass(property) {
+		if (this.state[property] === '') {
+			return "";
+		} else {
+			return "input--filled";
+		}
+	}
+
+	update(field){
+		return e => { this.setState({[field]: e.currentTarget.value }); };
+	}
 
   _generateInput(property) {
     return (
@@ -59,13 +82,19 @@ class RejectForm extends React.Component {
 
 	handleSubmit(e){
 		e.preventDefault();
-		const application = merge({}, this.state, {progress: 'application'});
-		this.props.createApplication({application});
+		this.setState({submit: true});
+		let app = this.props.application;
+		let updateInfo = {
+			company: this.state.company,
+			job_title: this.state.job_title
+		};
+		const application = merge({}, app, updateInfo);
+		this.props.updateApplication(application);
 	}
 
 	humanize(str) {
 	  let frags = str.split('_');
-	  for (let i=0; i<frags.length; i++) {
+	  for (let i=0; i < frags.length; i++) {
 	    frags[i] = frags[i].charAt(0).toUpperCase() + frags[i].slice(1);
 	  }
 	  return frags.join(' ');
@@ -73,8 +102,7 @@ class RejectForm extends React.Component {
 
 	render() {
 		return (
-      <div className='form-container form-success form-right form-left'
-					 id='offerForm'>
+      <div className='form-container form-primary form-left' id='editForm'>
         <div className='form-buffer'>
           <form className="content bgcolor-5 form">
             <section className='form-input'>
@@ -92,4 +120,4 @@ class RejectForm extends React.Component {
 
 }
 
-export default withRouter(RejectForm);
+export default withRouter(EditForm);

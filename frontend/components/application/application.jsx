@@ -1,5 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router';
+import { merge, isEmpty } from 'lodash';
 
 import ProgressBar from './progress_bar';
 import ApplicationButtonGroupContainer from './application_button_group_container';

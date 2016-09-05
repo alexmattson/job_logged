@@ -5,7 +5,25 @@ import merge from 'lodash/merge';
 class DeleteForm extends React.Component {
 	constructor(props){
 		super(props);
+		this.state = {
+			submit: false
+		};
 		this.handleSubmit = this.handleSubmit.bind(this);
+	}
+
+	componentWillReceiveProps(newProps) {
+		if (this.state.submit) {
+			this.setState({submit: false});
+			debugger
+			if (newProps.errors.length < 1){
+				debugger
+				$.notify('Application Deleted Successfully', {
+					position:'bottom left',
+					className: 'success'
+				});
+				this.props.router.push(`/`);
+			}
+		}
 	}
 
   componentDidUpdate() {
@@ -23,16 +41,8 @@ class DeleteForm extends React.Component {
 
 	handleSubmit(e){
 		e.preventDefault();
+		this.setState({submit: true});
 		this.props.destroyApplication(this.props.application);
-		this.props.router.push('/');
-	}
-
-	humanize(str) {
-	  let frags = str.split('_');
-	  for (let i=0; i < frags.length; i++) {
-	    frags[i] = frags[i].charAt(0).toUpperCase() + frags[i].slice(1);
-	  }
-	  return frags.join(' ');
 	}
 
 	render() {

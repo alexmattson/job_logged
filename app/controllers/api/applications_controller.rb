@@ -13,8 +13,8 @@ class Api::ApplicationsController < ApplicationController
     @application = Application.new(application_params)
     @application.user_id = current_user.id
     if @application.save
-      @applications = Application.all
-			render "api/applications/index"
+      # @applications = Application.all
+			render "api/applications/show"
 		else
 			render json: @application.errors.full_messages, status: 422
 		end

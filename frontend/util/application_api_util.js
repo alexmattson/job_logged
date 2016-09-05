@@ -24,12 +24,13 @@ export const createApplication = function(application, success, error){
   });
 };
 
-export const updateApplication = function(application, success){
+export const updateApplication = function(application, success, error){
   $.ajax({
     method: 'PATCH',
     url: `api/applications/${application.id}`,
     data: {application},
-    success
+    success,
+    error
   });
 };
 

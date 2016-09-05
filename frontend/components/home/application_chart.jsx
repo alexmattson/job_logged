@@ -44,7 +44,8 @@ class ApplicationChart extends React.Component {
         }]
       },
       maintainAspectRatio: false,
-      legend: { display: false }
+      legend: { display: false },
+			responsiveAnimationDuration: 3000
     };
 
     let myChart = new Chart(ctx, {

@@ -32,10 +32,10 @@ import { receiveErrors } from '../actions/error_actions';
        fetchApplication(action.id, applicationSuccess);
        return next(action);
      case CREATE_APPLICATION:
-       createApplication(action.application, applicationsSuccess, applicationErrored);
+       createApplication(action.application, applicationSuccess, applicationErrored);
        return next(action);
      case UPDATE_APPLICATION:
-       updateApplication(action.application, applicationSuccess)
+       updateApplication(action.application, applicationSuccess, applicationErrored)
        return next(action);
      case DESTROY_APPLICATION:
        destroyApplication(action.application, applicationRemoved);

@@ -2,17 +2,17 @@ import React from 'react';
 import { withRouter } from 'react-router';
 import merge from 'lodash/merge';
 
-import NewFrom from '../forms/new_form';
-import UpdateForm from '../forms/update_form';
-import DeleteForm from '../forms/delete_form';
-import RejectForm from '../forms/reject_form';
-import OfferForm from '../forms/offer_form';
+import EditFrom from './forms/edit_form';
+import UpdateForm from './forms/update_form';
+import DeleteForm from './forms/delete_form';
+// import RejectForm from '../forms/reject_form';
+// import OfferForm from '../forms/offer_form';
 
 class ApplicationButtonGroup extends React.Component {
 	constructor(props){
 		super(props);
     this.nullState = {
-      new: false,
+      edit: false,
       update: false,
 			delete: false,
       reject: false,
@@ -40,8 +40,8 @@ class ApplicationButtonGroup extends React.Component {
       <div>
         <div className='button-group'>
           <button className="btn btn-primary btn-lg"
-                  id='new'
-                  onClick={this._toggle('new')}>
+                  id='edit'
+                  onClick={this._toggle('edit')}>
             Edit
           </button>
           <button className="btn btn-info btn-lg"
@@ -55,15 +55,24 @@ class ApplicationButtonGroup extends React.Component {
             Delete
           </button>
         </div>
-				<NewFrom new={this.state.new}
-								 createApplication={this.props.createApplication}/>
+				<EditFrom edit={this.state.edit}
+									application={this.props.application}
+									applications={this.props.applications}
+									errors={this.props.errors}
+								 	updateApplication={this.props.updateApplication}
+									toggleParent={this._toggle('edit')}/>
 				<UpdateForm update={this.state.update}
+										application={this.props.application}
 										applications={this.props.applications}
-										updateApplication={this.props.updateApplication}/>
+										errors={this.props.errors}
+										updateApplication={this.props.updateApplication}
+										createEvent={this.props.createEvent}
+										toggleParent={this._toggle('update')}/>
 				<DeleteForm delete={this.state.delete}
 					 					application={this.props.application}
+					 					applications={this.props.applications}
+										errors={this.props.errors}
 										destroyApplication={this.props.destroyApplication}/>
-				<OfferForm offer={this.state.offer} />
       </div>
 		);
 	}

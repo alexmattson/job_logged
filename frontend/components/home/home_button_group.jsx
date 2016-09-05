@@ -2,10 +2,10 @@ import React from 'react';
 import { withRouter } from 'react-router';
 import merge from 'lodash/merge';
 
-import NewFrom from '../forms/new_form';
-import UpdateForm from '../forms/update_form';
-import RejectForm from '../forms/reject_form';
-import OfferForm from '../forms/offer_form';
+import NewFrom from './forms/new_form';
+import UpdateForm from './forms/update_form';
+import RejectForm from './forms/reject_form';
+import OfferForm from './forms/offer_form';
 
 class HomeButtonGroup extends React.Component {
 	constructor(props){
@@ -54,19 +54,27 @@ class HomeButtonGroup extends React.Component {
           </button>
         </div>
 				<NewFrom new={this.state.new}
-								 createApplication={this.props.createApplication}/>
+								 createApplication={this.props.createApplication}
+								 errors={this.props.errors}
+								 applications={this.props.applications}/>
 				<UpdateForm update={this.state.update}
+										errors={this.props.errors}
 										applications={this.props.applications}
 										updateApplication={this.props.updateApplication}
 										createEvent={this.props.createEvent}/>
 				<RejectForm reject={this.state.reject}
-										applications={this.props.applications}/>
+										errors={this.props.errors}
+										applications={this.props.applications}
+										updateApplication={this.props.updateApplication}/>
         <button className="btn btn-success btn-lg btn-full"
 								id='offer'
 								onClick={this._toggle('offer')}>
           Offer
         </button>
-				<OfferForm offer={this.state.offer} />
+				<OfferForm offer={this.state.offer}
+									 errors={this.props.errors}
+									 applications={this.props.applications}
+									 updateApplication={this.props.updateApplication} />
       </div>
 		);
 	}

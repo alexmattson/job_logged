@@ -1,7 +1,7 @@
 import React from 'react';
 import { merge, isEmpty } from 'lodash';
 
-import NewContactForm from './new_contact_form';
+import NewContactForm from './forms/new_contact_form';
 
 class Contact extends React.Component {
   constructor(props) {

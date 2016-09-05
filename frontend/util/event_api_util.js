@@ -25,12 +25,13 @@ export const createEvent = function(event, success, error){
   });
 };
 
-export const updateEvent = function(event, success){
+export const updateEvent = function(event, success, error){
   $.ajax({
     method: 'PATCH',
     url: `api/applications/${event.application_id}/events/${event.id}`,
     data: {event},
-    success
+    success,
+    error
   });
 };
 

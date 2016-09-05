@@ -1,10 +1,11 @@
 import React from 'react';
 import { withRouter } from 'react-router';
 import merge from 'lodash/merge';
+
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
 
-class NewEventForm extends React.Component {
+class EditEventForm extends React.Component {
 	constructor(props){
 		super(props);
 		this.state = this._formatEvent();
@@ -29,23 +30,36 @@ class NewEventForm extends React.Component {
 
 		return ({
 			title: this.props.event.title,
-			notes: this.props.event.notes,
+			notes: this.props.event.notes || '',
+			progress: this.props.event.event_type,
 			time: `${hour}:${min}`,
-			startDate: moment(`${mm}/${dd}/${yyyy}`, 'MM-DD-YYYY')
+			startDate: moment(`${mm}/${dd}/${yyyy}`, 'MM-DD-YYYY'),
+			submit: false
 		});
 	}
 
-  _setClass(property) {
-    if (this.state[property] === '') {
-      return "";
-    } else {
-      return "input--filled";
-    }
-  }
+	componentWillReceiveProps(newProps) {
+		if (this.state.submit) {
+			this.setState({submit: false});
+			if (newProps.errors.length < 1){
+				$.notify('Event Updated', {
+					position:'bottom left',
+					className: 'success'
+				});
 
-  update(field){
-    return e => { this.setState({[field]: e.currentTarget.value }); };
-  }
+				// Update application
+				let progress = this.state.progress;
+				if (progress !== 'other') {
+					let application = this.props.application;
+					application = merge({}, application, {progress});
+					this.props.updateApplication(application);
+				}
+
+				// Reset page elements
+				this.props.toggleParent();
+			}
+		}
+	}
 
   componentDidUpdate() {
     let editEventButton = document.getElementById(
@@ -54,7 +68,7 @@ class NewEventForm extends React.Component {
     if (this.props.editEvent) {
       document.getElementById(
 				`editEvent${this.props.event.id}Form`
-			).style.height = "300px";
+			).style.height = "350px";
     } else {
       if (editEventButton) {
         document.getElementById(
@@ -62,8 +76,19 @@ class NewEventForm extends React.Component {
 				).style.height = "0px";
       }
     }
+
+		// Setup Dropdown
+		if (this.props.applicationId) {
+			$( `#editEvent${this.props.event.id}Dropdown` ).select2({
+				dropdownCssClass: "event-dropdown"
+			});
+			$( `#editEvent${this.props.event.id}Dropdown` ).on("change", ((e)=>{
+				this.setState({progress: e.target.value});
+			}));
+		}
   }
 
+	// Input generator ///
   _generateInput(property) {
     return (
       <div className={this._setClass(property)}>
@@ -80,6 +105,58 @@ class NewEventForm extends React.Component {
       </div>
     );
   }
+
+	_setClass(property) {
+		if (this.state[property] === '') {
+			return "";
+		} else {
+			return "input--filled";
+		}
+	}
+
+	humanize(str) {
+		let frags = str.split('_');
+		for (let i=0; i < frags.length; i++) {
+			frags[i] = frags[i].charAt(0).toUpperCase() + frags[i].slice(1);
+		}
+		return frags.join(' ');
+	}
+	///////
+
+	selected(property){
+		if (this.state.progress === property) {
+			return true;
+		}
+		return false;
+	}
+
+	_typePicker() {
+		return (
+			<div>
+				<select className="progress-search"
+					id={`editEvent${this.props.event.id}Dropdown`}
+					style={ { width: '100%' } }
+					defaultValue={this.state.progress}>
+					<option value='phone' >
+						Phone Interview
+					</option>
+					<option value='on-site' >
+						On-Site Interview
+					</option>
+					<option value='rejected' >
+						Rejected
+					</option>
+					<option value='offer' >
+						Offer
+					</option>
+					<option value='other' >
+						Other
+					</option>
+				</select>
+				<span className='label'>Type</span>
+			</div>
+		);
+	}
 
 	_datePicker() {
 		return (
@@ -117,25 +194,22 @@ class NewEventForm extends React.Component {
 		);
 	}
 
+	update(field){
+		return e => { this.setState({[field]: e.currentTarget.value }); };
+	}
+
 	handleSubmit(e){
 		e.preventDefault();
+		this.setState({submit: true});
 		let event = {
 			id: this.props.event.id,
 			title: this.state.title,
 			date_time: new Date(this.state.startDate.format('l') + ' ' + this.state.time).toString(),
 			notes: this.state.notes,
-			application_id: this.props.applicationId
+			application_id: this.props.applicationId,
+			event_type: this.state.progress
 		};
 		this.props.updateEvent(event);
-		this.props.toggleParent();
-	}
-
-	humanize(str) {
-	  let frags = str.split('_');
-	  for (let i=0; i<frags.length; i++) {
-	    frags[i] = frags[i].charAt(0).toUpperCase() + frags[i].slice(1);
-	  }
-	  return frags.join(' ');
 	}
 
 	render() {
@@ -146,6 +220,7 @@ class NewEventForm extends React.Component {
           <form className="content bgcolor-5 form">
 						<section className='form-input'>
               {this._generateInput('title')}
+							{this._typePicker()}
 							{this._datePicker()}
 							{this._timePicker()}
 							{this._generateInput('notes')}
@@ -161,4 +236,4 @@ class NewEventForm extends React.Component {
 
 }
 
-export default withRouter(NewEventForm);
+export default withRouter(EditEventForm);

@@ -16,7 +16,8 @@ class UpdateForm extends React.Component {
 			startDate: moment(),
 			other: false,
 			choseCompany: false,
-			singleApp: false
+			singleApp: false,
+			submit: false
     };
 
 		// Generate Form Inputs
@@ -39,7 +40,29 @@ class UpdateForm extends React.Component {
 		this._datePicker = this._datePicker.bind(this);
 	}
 
-	componentDidMount() {
+	componentWillReceiveProps(newProps) {
+		if (this.state.submit) {
+			this.setState({submit: false});
+			if (newProps.errors.length < 1){
+				$.notify('Application Updated and Event Added', {
+					position:'bottom left',
+					className: 'success'
+				});
+
+				// Update application
+				let progress = $( ".progress-search" )[0].value;
+				if (progress !== 'other') {
+					let apps = this.props.applications;
+					let application = apps.all[this.state.applicationId];
+					application = merge({}, application, {progress});
+					this.props.updateApplication(application);
+				}
+
+				// Redirect
+				this.props.router.push(`/application/${this.state.applicationId}`);
+
+			}
+		}
 	}
 
 	componentDidUpdate() {
@@ -195,7 +218,6 @@ class UpdateForm extends React.Component {
 		if (this.state.choseCompany) {
 			return (
 				<section className='form-input progress-form'>
-
 					<select className="progress-search"
 									id='dropdown2'
 									style={ { width: '100%' } }>
@@ -229,7 +251,7 @@ class UpdateForm extends React.Component {
 									id='dropdown' >
 					  {this._formatAppOptions()}
 					</select>
-					<span className='label'>Application</span>
+					<span className='label'>On which application did you progress?</span>
 				</section>
 			);
 		}
@@ -260,7 +282,9 @@ class UpdateForm extends React.Component {
 	handleSubmit(e){
 		e.preventDefault();
 		if (this.state.choseCompany) {
-			// Save Event
+			this.setState({submit: true});
+
+			// Try to Save Event
 			let event = {
 				title: this.state.title,
 				date_time: new Date(this.state.startDate.format('l') + ' ' + this.state.time).toString(),
@@ -268,17 +292,6 @@ class UpdateForm extends React.Component {
 			};
 			this.props.createEvent(event);
 
-			// Update application
-			let progress = $( ".progress-search" )[0].value;
-			if (progress !== 'other') {
-				let apps = this.props.applications;
-				let application = apps.all[this.state.applicationId];
-				application = merge({}, application, {progress});
-				this.props.updateApplication(application);
-			}
-
-			// Redirect
-			this.props.router.push(`/application/${this.state.applicationId}`);
 		} else {
 			let applicationId = $( ".progress-search" )[0].value;
 			$( ".select2-container" ).remove();

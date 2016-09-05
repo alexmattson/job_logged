@@ -4,7 +4,7 @@ const ContactsReducer = (state = [], action) => {
     case 'RECEIVE_ERRORS':
       return action.errors.responseJSON;
     default:
-      return state;
+      return [];
   }
 };
 

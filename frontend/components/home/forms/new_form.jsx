@@ -7,7 +7,8 @@ class NewFrom extends React.Component {
 		super(props);
     this.state = {
       company: '',
-      job_title: ''
+      job_title: '',
+			submit: false
     };
     this.update = this.update.bind(this);
     this._setClass = this._setClass.bind(this);
@@ -27,7 +28,20 @@ class NewFrom extends React.Component {
     return e => { this.setState({[field]: e.currentTarget.value }); };
   }
 
-  componentDidUpdate() {
+	componentWillReceiveProps(newProps) {
+		if (this.state.submit) {
+			this.setState({submit: false});
+			if (newProps.errors.length < 1){
+				$.notify('Application Created', {
+					position:'bottom left',
+					className: 'success'
+				});
+				this.props.router.push(`/application/${newProps.applications.current.id}`);
+			}
+		}
+	}
+
+  componentDidUpdate(newProps, nextProps) {
     let newButton = document.getElementById("new");
     if (this.props.new) {
       newButton.style.height = "50px";
@@ -61,6 +75,7 @@ class NewFrom extends React.Component {
 		e.preventDefault();
 		const application = merge({}, this.state, {progress: 'application'});
 		this.props.createApplication({application});
+		this.setState({submit: true});
 	}
 
 	humanize(str) {

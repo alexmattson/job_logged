@@ -15,4 +15,4 @@
 //= require_tree .
 //= require moment
 //= require fullcalendar
-//= require select2
+//= require select2-full

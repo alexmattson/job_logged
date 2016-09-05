@@ -7,7 +7,9 @@ class RejectForm extends React.Component {
 		super(props);
     this.state = {
       company: '',
-      job_title: ''
+      job_title: '',
+			applicationId: '',
+			submit: false
     };
     this.update = this.update.bind(this);
     this._setClass = this._setClass.bind(this);
@@ -16,17 +18,21 @@ class RejectForm extends React.Component {
 		this._formatAppOptions = this._formatAppOptions.bind(this);
 	}
 
-  _setClass(property) {
-    if (this.state[property] === '') {
-      return "";
-    } else {
-      return "input--filled";
-    }
-  }
+	componentWillReceiveProps(newProps, newState, x) {
+		if (this.state.submit) {
+			this.setState({submit: false});
+			if (newProps.errors.length < 1){
+				$.notify('The Beatles were turned down before they made it!', {
+					position:'bottom left',
+					className: 'success'
+				});
+				debugger
+				// Redirect
+				this.props.router.push(`/application/${this.state.applicationId}`);
 
-  update(field){
-    return e => { this.setState({[field]: e.currentTarget.value }); };
-  }
+			}
+		}
+	}
 
   componentDidUpdate() {
     let rejectButton = document.getElementById("reject");
@@ -63,6 +69,18 @@ class RejectForm extends React.Component {
 		}
   }
 
+	_setClass(property) {
+		if (this.state[property] === '') {
+			return "";
+		} else {
+			return "input--filled";
+		}
+	}
+
+	update(field){
+		return e => { this.setState({[field]: e.currentTarget.value }); };
+	}
+
   _generateInput(property) {
     return (
       <div className={this._setClass(property)}>
@@ -82,8 +100,15 @@ class RejectForm extends React.Component {
 
 	handleSubmit(e){
 		e.preventDefault();
-		const application = merge({}, this.state, {progress: 'application'});
-		this.props.createApplication({application});
+		let applicationId = $( ".progress-search" )[0].value;
+		let app = this.props.applications.all[applicationId];
+		const application = merge({}, app, {progress: 'rejected'});
+		this.props.updateApplication(application);
+
+		this.setState({
+			submit: true,
+			applicationId
+		});
 	}
 
 	humanize(str) {
@@ -121,7 +146,7 @@ class RejectForm extends React.Component {
 											id='dropdownReject' >
 								{this._formatAppOptions()}
 							</select>
-							<span className='label'>Application</span>
+							<span className='label'>Which application was rejected?</span>
 						</section>
             <div className='form-button' onClick={this.handleSubmit}>
               <span>Submit</span>

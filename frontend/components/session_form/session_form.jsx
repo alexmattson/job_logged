@@ -75,9 +75,7 @@ class SessionForm extends React.Component {
 
 	fillInput(input, str, n = 1) {
 		setTimeout(()=>{
-			if (n < str.length) {
-				this.fillInput(input, str, n + 1);
-			}
+			if (n < str.length) { this.fillInput(input, str, n + 1); }
 			this.setState({[input]: str.slice(0, n)});
 		}, 350);
 	}

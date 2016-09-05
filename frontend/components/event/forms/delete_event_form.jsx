@@ -43,15 +43,10 @@ class DeleteForm extends React.Component {
 										 	this.props.event,
 											{application_id: this.props.applicationId})
 		this.props.destroyEvent(event);
-		this.props.toggleParent();
-	}
-
-	humanize(str) {
-	  let frags = str.split('_');
-	  for (let i=0; i<frags.length; i++) {
-	    frags[i] = frags[i].charAt(0).toUpperCase() + frags[i].slice(1);
-	  }
-	  return frags.join(' ');
+		$.notify('Event Deleted', {
+			position:'bottom left',
+			className: 'error'
+		});
 	}
 
 	render() {

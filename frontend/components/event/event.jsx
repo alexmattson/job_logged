@@ -3,9 +3,9 @@ import merge from 'lodash/merge';
 import { isEmpty } from 'lodash';
 import { withRouter } from 'react-router';
 
-import NewEventForm from './new_event_form';
-import EditEventForm from './edit_event_form';
-import DeleteEventForm from './delete_event_form';
+import NewEventForm from './forms/new_event_form';
+import EditEventForm from './forms/edit_event_form';
+import DeleteEventForm from './forms/delete_event_form';
 
 class Event extends React.Component {
   constructor(props) {
@@ -28,6 +28,7 @@ class Event extends React.Component {
   }
 
   componentWillReceiveProps(newProps) {
+    // Update Event List
     let events = newProps.events;
     let eventIds = Object.keys(events);
     let eventState = {};
@@ -124,17 +125,24 @@ class Event extends React.Component {
               <span>{hour}:{min} {half}</span>
             </div>
             <div className='detail'>
-              <div className='title'>{events[id].title}</div>
+              <div className='title-line'>
+                <div className='title'>{events[id].title}</div>
+                <div className='event-type'>{events[id].event_type}</div>
+              </div>
               <p>{events[id].notes}</p>
             </div>
           </div>
           <EditEventForm event={events[id]}
                          editEvent={this.state[`editEvent${id}`]}
+                         errors={this.props.errors}
+                         application={this.props.application}
                          applicationId={this.props.application.id}
+                         updateApplication={this.props.updateApplication}
                          updateEvent={this.props.updateEvent}
                          toggleParent={this._toggle(`editEvent${id}`)} />
           <DeleteEventForm event={events[id]}
                            deleteEvent={this.state[`deleteEvent${id}`]}
+                           errors={this.props.errors}
                            applicationId={this.props.application.id}
                            destroyEvent={this.props.destroyEvent}
                            toggleParent={this._toggle(`deleteEvent${id}`)} />
@@ -165,6 +173,9 @@ class Event extends React.Component {
         </div>
         <NewEventForm newEvent={this.state.newEvent}
                       createEvent={this.props.createEvent}
+                      updateApplication={this.props.updateApplication}
+                      errors={this.props.errors}
+                      application={this.props.application}
                       applicationId={this.props.application.id}
                       toggleParent={this._toggle('newEvent')}/>
         <button className="btn btn-warning btn-event"

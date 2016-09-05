@@ -8,6 +8,14 @@ $dark-font: #333333;
   background-color: white;
 }
 
+.event-container .label {
+  color: $dark-font;
+}
+
+.event-container .date-picker-label {
+  margin-bottom: 15px;
+}
+
 .event-container-header {
   background-color: $purple;
   width: 100%;
@@ -55,8 +63,33 @@ $dark-font: #333333;
   background: #ffd1d6;
 }
 
+.detail .title-line {
+  display: flex;
+  justify-content: space-between;
+}
+
+.detail .event-type {
+  font-style: italic;
+  padding-right: 5px;
+}
+
 .detail .title {
   color: $dark-font;
   margin-bottom: 10px;;
   font-weight: bold;
+}
+
+// Select2 Overrides
+
+.event-container .select2-selection {
+  background: #ddd;
+  margin-bottom: 5px;
+}
+
+.event-dropdown {
+  background-color: #ddd;
+}
+
+.event-dropdown .select2-results__option[aria-selected=true] {
+  background-color: white;
 }
