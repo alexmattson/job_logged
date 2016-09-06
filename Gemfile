@@ -18,6 +18,9 @@ gem 'momentjs-rails'
 
 gem "select2-rails"
 
+# seed production database
+gem 'faker'
+
 group :development, :test do
   gem 'byebug', platform: :mri
 end
@@ -30,7 +33,6 @@ group :development do
   gem 'table_print'
   gem 'pry-rails'
   gem 'annotate'
-  gem 'faker'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
