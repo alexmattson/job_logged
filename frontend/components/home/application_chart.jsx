@@ -177,6 +177,7 @@ class ApplicationChart extends React.Component {
 		return (
       <div className='canvas-container'>
         <div className='table-header'>Job Applications Sent</div>
+				<p>grey chart is other applicants data</p>
         <div>
           <canvas id="myChart" width="500" height="175"></canvas>
         </div>

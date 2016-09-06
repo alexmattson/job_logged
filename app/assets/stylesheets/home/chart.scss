@@ -5,6 +5,11 @@ $dark-font: #333333;
   height: 250px;
   background: white;
 }
+.canvas-container p {
+  margin: 0 0 10px;
+  text-align: center;
+  color: #ccc;
+}
 
 .canvas-container h3 {
   color: $dark-font;
