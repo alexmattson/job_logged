@@ -3,6 +3,7 @@ import { merge, isEmpty } from 'lodash';
 
 import NewContactForm from './forms/new_contact_form';
 import EditContactForm from './forms/edit_contact_form';
+import Map from './map';
 
 class Contact extends React.Component {
   constructor(props) {
@@ -77,7 +78,7 @@ class Contact extends React.Component {
   _infoFeild(property) {
     if (this.props.contact[property] !== '') {
       return (
-        <span>{this.props.contact[property]}</span>
+        <span id={property}>{this.props.contact[property]}</span>
       );
     }
   }
@@ -137,6 +138,8 @@ class Contact extends React.Component {
                   onClick={this._toggle('editContact')}>
             {this._text(`editContact`, 'Edit Contact')}
           </button>
+
+          <Map contact={this.props.contact} />
 
         </div>
       );

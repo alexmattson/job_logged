@@ -10,7 +10,7 @@ User.create(username: 'guest', password: 'password', created_at: 5.days.ago)
 
 progress = ['application',
             'application',
-            'application', 
+            'application',
             'phone',
             'on-site',
             'offer',
@@ -28,7 +28,7 @@ Application.all.each do |app|
                  lname: Faker::Name.last_name,
                  phone: Faker::PhoneNumber.cell_phone,
                  email: Faker::Internet.email,
-                 address: Faker::Address.street_address,
+                 address: '160 Spear St. San Francisco, CA',
                  application_id: app.id)
 end
 
