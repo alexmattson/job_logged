@@ -19,6 +19,7 @@ class SessionForm extends React.Component {
 
   logout() {
     this.props.logout();
+		$('.select2').remove();
 		hashHistory.push('/login');
   }
 
