@@ -20,6 +20,10 @@ class Header extends React.Component {
 				dropdownCssClass: "search-dropdown"
 			});
 
+			$( "#searchbar" ).on("change", (e) => {
+				this.props.router.push(`/application/${e.target.value}`);
+			});
+
 			let apps = this.props.applications.all;
 			let formatApplication = (app) => {
 				if (!app.id) { return app.text; }
@@ -66,7 +70,6 @@ class Header extends React.Component {
 		}
 	}
 
-
 	render() {
 		return (
       <header id="header" className="header">
@@ -77,7 +80,7 @@ class Header extends React.Component {
         </div>
 
 				<select className="searchbar"
-								id='searchbar' >
+								id='searchbar'>
 					<option></option>
 					{this._formatAppOptions()}
 				</select>
