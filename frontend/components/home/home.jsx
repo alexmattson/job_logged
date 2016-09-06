@@ -8,9 +8,6 @@ class Home extends React.Component {
 	constructor(props){
 		super(props);
 	}
-	componentDidMount() {
-		document.getElementById("home").className += " current-page";
-	}
 
 
 	render() {

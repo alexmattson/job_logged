@@ -21,7 +21,7 @@ class App extends React.Component {
       <div>
         <HeaderContainer />
         <div className='app'>
-          <SidebarContainer />
+          <SidebarContainer location={this.props.location} />
           {this.props.children}
         </div>
         <ErrorsContainer />

@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link, hashHistory } from 'react-router';
-import { withRouter } from 'react-router';
 
 class SessionForm extends React.Component {
 	constructor(props){
@@ -11,27 +10,33 @@ class SessionForm extends React.Component {
 	}
 
 	home() {
-		this.props.router.push('/');
+		hashHistory.push('/');
 	}
-	
+
 	profile() {
-		this.props.router.push('/profile');
+		hashHistory.push('/profile');
 	}
 
   logout() {
     this.props.logout();
-		this.props.router.push('/login');
+		hashHistory.push('/login');
   }
+
+	setClass(path){
+		if (this.props.location.pathname === path) {
+			return 'current-page';
+		}
+	}
 
 	render() {
 		return (
 			<div className='sidebar' id='sidebar'>
         <ul>
-          <li id='home' onClick={this.home}>
+          <li id='home' onClick={this.home} className={this.setClass('/')}>
             <i className="fa fa-home"></i>
             <span>Home</span>
           </li>
-          <li id='profile' onClick={this.profile}>
+          <li id='profile' onClick={this.profile} className={this.setClass('/profile')}>
             <i className="fa fa-user"></i>
             <span>Profile</span>
           </li>
@@ -46,4 +51,4 @@ class SessionForm extends React.Component {
 
 }
 
-export default withRouter(SessionForm);
+export default SessionForm;
