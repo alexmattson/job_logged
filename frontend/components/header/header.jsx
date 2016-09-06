@@ -70,6 +70,21 @@ class Header extends React.Component {
 		}
 	}
 
+	searchbar() {
+		if (this.props.location.pathname === '/login' ||
+				this.props.location.pathname === '/signup') {
+			return;
+		} else {
+			return (
+				<select className="searchbar"
+								id='searchbar'>
+					<option></option>
+					{this._formatAppOptions()}
+				</select>
+			);
+		}
+	}
+
 	render() {
 		return (
       <header id="header" className="header">
@@ -79,11 +94,7 @@ class Header extends React.Component {
                className='logo' />
         </div>
 
-				<select className="searchbar"
-								id='searchbar'>
-					<option></option>
-					{this._formatAppOptions()}
-				</select>
+				{this.searchbar()}
 
         <div className='sidebar-icon'>
           <i className="fa fa-list sm-sidebar-icon"

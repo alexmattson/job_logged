@@ -19,7 +19,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <HeaderContainer />
+        <HeaderContainer location={this.props.location}/>
         <div className='app'>
           <SidebarContainer location={this.props.location} />
           {this.props.children}
