@@ -20,7 +20,7 @@ class ApplicationIndex extends React.Component {
   render() {
     return(
       <div className='app-content'>
-        <div className='main shadow'>
+        <div className='main shadow application-header'>
           <h1>{this.props.application.company}</h1>
           <h3>{this.props.application.job_title}</h3>
         </div>
