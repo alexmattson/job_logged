@@ -1,0 +1,32 @@
+$blue: #2196f3;
+$darker-red: #f1344b;
+$background-color: #edecec;
+$dark-font: #333333;
+
+.search-dropdown {
+  position: absolute;
+  top: -163px;
+  width: 100%;
+}
+
+.header .select2-selection:focus {
+  box-shadow: none;
+  outline: 0 none;
+}
+
+.header .select2-selection {
+  background: $darker-red;
+}
+
+.header .select2-container--default .select2-selection--single .select2-selection__placeholder {
+  color: white;
+}
+
+.header .select2-container--default .select2-selection--single .select2-selection__arrow b {
+  border-color: none;
+  border-style: none;
+}
+
+.header .select2-selection__rendered {
+  color: white !important;
+}

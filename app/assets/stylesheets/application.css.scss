@@ -54,8 +54,15 @@ h3 {
 
 // Sidebar
 
+.sidebar-icon{
+  margin-left: 10px;
+}
+
 .sidebar {
   display: flex;
+  flex-basis: 150px;
+  flex-grow: 0;
+  flex-shrink: 0;
   justify-content: flex-start;
   height: calc(100% - 250px);
   width: 200px;
@@ -107,6 +114,7 @@ h3 {
     font-size: 40px;
     color: #fff;
   }
+
 }
 
 // Content
@@ -114,9 +122,15 @@ h3 {
 .app-content {
   padding: 30px;
   position: relative;
-  width: 100%;
+  width: calc(100% - 150px);
   position: relative;
     top: -120px;
+}
+
+@media (max-width: 835px) {
+  .app-content {
+    width: 100%;
+  }
 }
 
 .main {

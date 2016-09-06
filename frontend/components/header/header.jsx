@@ -1,5 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router';
+import { isEmpty } from 'lodash';
 
 class Header extends React.Component {
 	constructor(props){
@@ -8,6 +9,32 @@ class Header extends React.Component {
       menu: false
     };
     this._toggleMenu = this._toggleMenu.bind(this);
+	}
+
+	componentDidUpdate() {
+		if (this.props.applications) {
+			$( "#searchbar" ).select2({
+				templateResult: formatApplication,
+				placeholder: 'Search Applications',
+				allowClear: true,
+				dropdownCssClass: "search-dropdown"
+			});
+
+			let apps = this.props.applications.all;
+			let formatApplication = (app) => {
+				if (!app.id) { return app.text; }
+				let id = app.id;
+				var $app = $(
+					'<div class="company">' +
+						apps[id].company +
+					'</div>' +
+					'<div>' +
+						apps[id].job_title +
+					'</div>'
+				);
+				return $app;
+			};
+		}
 	}
 
   _toggleMenu() {
@@ -20,6 +47,25 @@ class Header extends React.Component {
     }
   }
 
+	_formatAppOptions() {
+		let apps = this.props.applications;
+		if (!isEmpty(apps)) {
+			apps = Object.keys(apps).map(id => {
+				return apps[id];
+			});
+			apps = apps.map(app => {
+				return (
+					<option value={app.id} key={`${app.company}${app.id}`}>
+						{app.company} | {app.job_title}
+					</option>
+				);
+			});
+			return apps;
+		} else {
+			return;
+		}
+	}
+
 
 	render() {
 		return (
@@ -29,7 +75,14 @@ class Header extends React.Component {
                alt='Logo'
                className='logo' />
         </div>
-        <div>
+
+				<select className="searchbar"
+								id='searchbar' >
+					<option></option>
+					{this._formatAppOptions()}
+				</select>
+
+        <div className='sidebar-icon'>
           <i className="fa fa-list sm-sidebar-icon"
              onClick={this._toggleMenu}
           ></i>
