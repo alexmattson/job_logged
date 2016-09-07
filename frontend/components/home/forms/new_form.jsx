@@ -1,6 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router';
 import merge from 'lodash/merge';
+import { generateInput } from '../../../helper/form_helper';
 
 class NewFrom extends React.Component {
 	constructor(props){
@@ -11,22 +12,8 @@ class NewFrom extends React.Component {
 			submit: false
     };
     this.update = this.update.bind(this);
-    this._setClass = this._setClass.bind(this);
-    this._generateInput = this._generateInput.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 	}
-
-  _setClass(property) {
-    if (this.state[property] === '') {
-      return "";
-    } else {
-      return "input--filled";
-    }
-  }
-
-  update(field){
-    return e => { this.setState({[field]: e.currentTarget.value }); };
-  }
 
 	componentWillReceiveProps(newProps) {
 		if (this.state.submit) {
@@ -54,22 +41,9 @@ class NewFrom extends React.Component {
     }
   }
 
-  _generateInput(property) {
-    return (
-      <div className={this._setClass(property)}>
-        <input className="input__field input__field--form"
-          type={property}
-          value={this.state[property]}
-          onChange={this.update(property)} />
-        <label className="input__label input__label--form"
-               htmlFor={property}>
-          <span className="input__label-content input__label-content--form">
-            {this.humanize(property)}
-          </span>
-        </label>
-      </div>
-    );
-  }
+	update(field){
+		return e => { this.setState({[field]: e.currentTarget.value }); };
+	}
 
 	handleSubmit(e){
 		e.preventDefault();
@@ -78,22 +52,14 @@ class NewFrom extends React.Component {
 		this.setState({submit: true});
 	}
 
-	humanize(str) {
-	  let frags = str.split('_');
-	  for (let i=0; i < frags.length; i++) {
-	    frags[i] = frags[i].charAt(0).toUpperCase() + frags[i].slice(1);
-	  }
-	  return frags.join(' ');
-	}
-
 	render() {
 		return (
       <div className='form-container form-primary form-left' id='newForm'>
         <div className='form-buffer'>
           <form className="content bgcolor-5 form">
             <section className='form-input'>
-              {this._generateInput('company')}
-              {this._generateInput('job_title')}
+              {generateInput(this.state, 'company', this.update('company'))}
+              {generateInput(this.state, 'job_title', this.update('job_title'))}
             </section>
             <div className='form-button' onClick={this.handleSubmit}>
               <span>Submit</span>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { withRouter, routePrams } from 'react-router';
 import merge from 'lodash/merge';
+import { generateInput } from '../../../helper/form_helper';
 
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
@@ -21,8 +22,6 @@ class UpdateForm extends React.Component {
 
 		// Generate Form Inputs
     this.update = this.update.bind(this);
-    this._setClass = this._setClass.bind(this);
-    this._generateInput = this._generateInput.bind(this);
 
 		// Handle buttons
 		this.handleSubmit = this.handleSubmit.bind(this);
@@ -97,42 +96,6 @@ class UpdateForm extends React.Component {
   update(field){
     return e => { this.setState({[field]: e.currentTarget.value }); };
   }
-
-	// Generate Input
-  _generateInput(property) {
-    return (
-      <div className={this._setClass(property)}>
-        <input className="input__field input__field--form"
-          type={property}
-          value={this.state[property]}
-          onChange={this.update(property)} />
-        <label className="input__label input__label--form"
-               htmlFor={property}>
-          <span className="input__label-content input__label-content--form">
-            {this.humanize(property)}
-          </span>
-        </label>
-      </div>
-    );
-  }
-
-	_setClass(property) {
-		if (this.state[property] === '') {
-			return "";
-		} else {
-			return "input--filled";
-		}
-	}
-
-	humanize(str) {
-		let frags = str.split('_');
-		for (let i=0; i < frags.length; i++) {
-			frags[i] = frags[i].charAt(0).toUpperCase() + frags[i].slice(1);
-		}
-		return frags.join(' ');
-	}
-
-	///
 
 	_nextActionButton() {
 		if (this.state.choseCompany) {
@@ -217,7 +180,7 @@ class UpdateForm extends React.Component {
 				</select>
 				<span className='label'>What have you scheduled?</span>
 
-				{this._generateInput('title')}
+				{generateInput(this.state, 'title', this.update('title'))}
 				{this._datePicker()}
 				{this._timePicker()}
 			</section>

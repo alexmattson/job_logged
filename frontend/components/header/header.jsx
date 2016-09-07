@@ -2,6 +2,8 @@ import React from 'react';
 import { withRouter } from 'react-router';
 import { isEmpty } from 'lodash';
 
+import Searchbar from './searchbar';
+
 class Header extends React.Component {
 	constructor(props){
 		super(props);
@@ -9,39 +11,7 @@ class Header extends React.Component {
       menu: false
     };
     this._toggleMenu = this._toggleMenu.bind(this);
-	}
-
-	componentDidUpdate() {
-		if (this.props.applications) {
-			let $search = $( "#searchbar" ).select2({
-				templateResult: formatApplication,
-				placeholder: 'Search Applications',
-				allowClear: true,
-				dropdownCssClass: "search-dropdown"
-			});
-
-			$( "#searchbar" ).on("change", (e) => {
-				if (e.target.value !== '') {
-					this.props.router.push(`/application/${e.target.value}`);
-					$search.val(null);
-				}
-			});
-
-			let apps = this.props.applications.all;
-			let formatApplication = (app) => {
-				if (!app.id) { return app.text; }
-				let id = app.id;
-				var $app = $(
-					'<div class="company">' +
-						apps[id].company +
-					'</div>' +
-					'<div>' +
-						apps[id].job_title +
-					'</div>'
-				);
-				return $app;
-			};
-		}
+		this.goHome = this.goHome.bind(this);
 	}
 
   _toggleMenu() {
@@ -54,38 +24,8 @@ class Header extends React.Component {
     }
   }
 
-	_formatAppOptions() {
-		let apps = this.props.applications;
-		if (!isEmpty(apps)) {
-			apps = Object.keys(apps).map(id => {
-				return apps[id];
-			});
-			apps = apps.map(app => {
-				return (
-					<option value={app.id} key={`${app.company}${app.id}`}>
-						{app.company} | {app.job_title}
-					</option>
-				);
-			});
-			return apps;
-		} else {
-			return;
-		}
-	}
-
-	searchbar() {
-		if (this.props.location.pathname === '/login' ||
-				this.props.location.pathname === '/signup') {
-			return;
-		} else {
-			return (
-				<select className="searchbar"
-								id='searchbar'>
-					<option></option>
-					{this._formatAppOptions()}
-				</select>
-			);
-		}
+	goHome() {
+		this.props.router.push('/');
 	}
 
 	render() {
@@ -94,10 +34,12 @@ class Header extends React.Component {
         <div className="pull-left h-logo">
           <img src='https://s16.postimg.io/4gxl6aq1x/logo_light.png'
                alt='Logo'
-               className='logo' />
+               className='logo'
+							 onClick={this.goHome}/>
         </div>
 
-				{this.searchbar()}
+				<Searchbar pathname={this.props.location.pathname}
+									 applications={this.props.applications}/>
 
         <div className='sidebar-icon'>
           <i className="fa fa-list sm-sidebar-icon"

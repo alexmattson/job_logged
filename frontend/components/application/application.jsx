@@ -18,6 +18,12 @@ class ApplicationIndex extends React.Component {
     this.props.requestApplicationEvents(this.props.routeParams.id);
   }
 
+  componentWillReceiveProps(newProps) {
+    if (this.props.routeParams.id !== newProps.routeParams.id ) {
+      this.props.requestApplication(newProps.routeParams.id);
+    }
+  }
+
   render() {
     return(
       <div className='app-content'>
