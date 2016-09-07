@@ -628,6 +628,7 @@ h3 {
 
 .bar-filler {
   width: 0px;
+  max-width: 100%;
   height: inherit;
   background-color: $green;
   -webkit-transition: width 1s;
