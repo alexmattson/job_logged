@@ -60,7 +60,10 @@ class PieChart extends React.Component {
 		return (
       <div className={this.selectClass()}>
         <div className='pie-chart-container'>
-          <canvas id={`chart${this.chartId}`} height="60" width="60"></canvas>
+          <canvas id={`chart${this.chartId}`}
+									height="60"
+									width="60"
+									className='pie-chart'></canvas>
           <div className='percent'>{this.props.percent}%</div>
         </div>
         <p>{this.props.text}</p>

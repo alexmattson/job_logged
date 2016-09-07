@@ -96,7 +96,6 @@ class Header extends React.Component {
 				<div className='left'>
 					<h1>{this.props.user.username}</h1>
 					<p>Your job search has lasted about {this.jobSearchLength()} days</p>
-					<div></div>
 				</div>
         {this.stats()}
 			</div>

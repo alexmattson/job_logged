@@ -55,7 +55,9 @@ class Gmail extends React.Component {
         <div id="authorize-div" className='authorize-div'>
           <span>Clicking the button below will pull any emails from your gmail account</span>
           <span>between you and the email listed in this apps contact</span>
-          <button id="authorize-button" onClick={
+          <button id="authorize-button"
+                  className='btn btn-primary'
+                  onClick={
               handleAuthClick(this.props.email, this.updateMessages)
           }>
             Authorize
