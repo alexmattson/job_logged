@@ -48,19 +48,17 @@ class Event extends React.Component {
         if (this.state[`editEvent${id}`] || this.state[`deleteEvent${id}`]) {
           document.getElementById(
             `event${id}`
-          ).style.overflow = "hidden";
-
+          ).style.height = '0px';
           document.getElementById(
-            `event${id}`
-          ).style['max-height'] = "0px";
+            `date${id}`
+          ).style.height = '0px';
         } else {
           document.getElementById(
             `event${id}`
-          ).style.overflow = "scroll";
-
+          ).style.height = "100px";
           document.getElementById(
-            `event${id}`
-          ).style['max-height'] = "100px";
+            `date${id}`
+          ).style.height = '130px';
         }
       });
     }
@@ -119,9 +117,10 @@ class Event extends React.Component {
       return (
         <div key={id} className='event'>
           <div className='event-info' id={`event` + id}>
-            <div className='date'>
+            <div className='date' id={`date` + id}>
+              <span>{month}</span>
+              <h2>{date}</h2>
               <span>{day}</span>
-              <h2>{month} {date}</h2>
               <span>{hour}:{min} {half}</span>
             </div>
             <div className='detail'>

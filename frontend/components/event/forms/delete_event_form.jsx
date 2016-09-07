@@ -16,23 +16,23 @@ class DeleteForm extends React.Component {
       document.getElementById(
 				`deleteEvent${this.props.event.id}Form`
 			).style.height = "50px";
-			document.getElementById(
-				`event${this.props.event.id}`
-			).style.overflow = "hidden";
-			document.getElementById(
-				`event${this.props.event.id}`
-			).style['max-height'] = "0px";
+			// document.getElementById(
+			// 	`event${this.props.event.id}`
+			// ).style.overflow = "hidden";
+			// document.getElementById(
+			// 	`event${this.props.event.id}`
+			// ).style['max-height'] = "0px";
     } else {
       if (deleteButton) {
         document.getElementById(
 					`deleteEvent${this.props.event.id}Form`
 				).style.height = "0px";
-				document.getElementById(
-					`event${this.props.event.id}`
-				).style.overflow = "scroll";
-				document.getElementById(
-					`event${this.props.event.id}`
-				).style['max-height'] = "100px";
+				// document.getElementById(
+				// 	`event${this.props.event.id}`
+				// ).style.overflow = "scroll";
+				// document.getElementById(
+				// 	`event${this.props.event.id}`
+				// ).style['max-height'] = "100px";
       }
     }
   }
@@ -54,7 +54,7 @@ class DeleteForm extends React.Component {
       <div className='form-container form-danger form-right'
 					 id={`deleteEvent${this.props.event.id}Form`}>
         <div className='form-buffer'>
-          <form className="content bgcolor-5 form">
+          <form className="content bgcolor-5 form delete-form">
             <section className='form-input'>
               <span>Are you sure you want to do this?</span>
             </section>

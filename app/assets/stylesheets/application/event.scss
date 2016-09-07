@@ -1,4 +1,6 @@
 $purple: #c751ee;
+$background-color: #edecec;
+$red: #ff3850;
 
 $dark-font: #333333;
 
@@ -34,20 +36,38 @@ $dark-font: #333333;
 
 .event {
   padding: 10px;
+  border-bottom: 1px solid #ddd;
 }
 
 .event-info {
-  overflow: scroll;
-  max-height: 100px;
-  -webkit-transition: max-height 1s;
-  transition: max-height 1s;
+  -webkit-transition: height 1s;
+  transition: height 1s;
+
+  overflow: visible;
+  display: flex;
+  height: 100px;
 }
 
 .event .date {
+  overflow: hidden;
   display: flex;
+  padding: 5px;
+  height: 130px;
+  width: 90px;
+  flex-direction: column;
+  background: $background-color;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
+
+  -webkit-transition: height 1s;
+  transition: height 1s;
+
+}
+
+.event .detail {
+  overflow: scroll;
+  padding-left: 10px;
+  width: 100%;
 }
 
 .event h2 {
@@ -77,6 +97,15 @@ $dark-font: #333333;
   color: $dark-font;
   margin-bottom: 10px;;
   font-weight: bold;
+}
+
+.event .form {
+  position: relative;
+  background: white;
+}
+
+.event .delete-form {
+  background: $red;
 }
 
 // Select2 Overrides
