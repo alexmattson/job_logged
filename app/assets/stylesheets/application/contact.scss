@@ -24,16 +24,20 @@ $light-blue: #5bc0de;
 .contact-info-container {
   padding: 20px 20px;
   overflow: hidden;
-  height: 170px;
-  -webkit-transition: height 1s, padding 1s;
-  transition: height 1s, padding 1s;
+  max-height: 200px;
+  -webkit-transition: max-height 1s, padding 1s;
+  transition: max-height 1s, padding 1s;
+
+  &.contract {
+    padding: 0px 20px;
+    max-height: 0;
+  }
 }
 
 .contact-info {
   display: flex;
   flex-direction: row;
   font-size: 16px;
-  height: 150px;
 }
 
 .contact-info .column {
@@ -47,8 +51,16 @@ $light-blue: #5bc0de;
   margin-bottom: 10px;
 }
 
+.contact-info .left-column *:last-of-type  {
+  margin-bottom: 0px;
+}
+
 .contact-info .right-column * {
   margin-bottom: 15px;
+}
+
+.contact-info .right-column *:last-of-type {
+  margin-bottom: 0px;
 }
 
 .contact-info span {

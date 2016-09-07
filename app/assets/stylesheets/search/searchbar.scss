@@ -22,6 +22,10 @@ $dark-font: #333333;
   color: white;
 }
 
+.select2-container--open .select2-dropdown--below {
+  border: 1px solid #ddd;
+}
+
 .header .select2-container--default .select2-selection--single .select2-selection__arrow b {
   border-color: none;
   border-style: none;

@@ -48,13 +48,11 @@ class EditContactForm extends React.Component {
   componentDidUpdate(newProps) {
     let editContactButton = document.getElementById("editContact");
     if (this.props.editContact) {
-      document.getElementById("contactInfo").style.height = "0px";
-      document.getElementById("contactInfo").style.padding = "0px 20px";
+      document.getElementById("contactInfo").classList.add("contract");
       document.getElementById("editContactForm").style.height = "325px";
     } else {
       if (editContactButton) {
-				document.getElementById("contactInfo").style.height = "170px";
-				document.getElementById("contactInfo").style.padding = "20px 20px";
+				document.getElementById("contactInfo").classList.remove("contract");
         document.getElementById("editContactForm").style.height = "0px";
       }
     }

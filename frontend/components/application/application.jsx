@@ -6,6 +6,7 @@ import ProgressBar from './progress_bar';
 import ApplicationButtonGroupContainer from './application_button_group_container';
 import EventContainer from '../event/event_container';
 import ContactContainer from '../contact/contact_container';
+import GmailContainer from '../gmail/gmail_container';
 
 class ApplicationIndex extends React.Component {
   constructor(props) {
@@ -27,6 +28,7 @@ class ApplicationIndex extends React.Component {
         <ApplicationButtonGroupContainer application={this.props.application} />
         <div className='modules-container'>
           <ProgressBar progress={this.props.application.progress} />
+          <GmailContainer />
           <ContactContainer />
           <EventContainer />
         </div>
