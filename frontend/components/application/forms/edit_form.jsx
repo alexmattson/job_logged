@@ -72,7 +72,7 @@ class EditForm extends React.Component {
         <div className='form-buffer'>
           <form className="content bgcolor-5 form">
             <section className='form-input'>
-              {generateInput(this.state, 'company', this.update('comapny'))}
+              {generateInput(this.state, 'company', this.update('company'))}
               {generateInput(this.state, 'job_title', this.update('job_title'))}
             </section>
             <div className='form-button' onClick={this.handleSubmit}>

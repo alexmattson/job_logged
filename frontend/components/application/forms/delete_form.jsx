@@ -14,9 +14,7 @@ class DeleteForm extends React.Component {
 	componentWillReceiveProps(newProps) {
 		if (this.state.submit) {
 			this.setState({submit: false});
-			debugger
 			if (newProps.errors.length < 1){
-				debugger
 				$.notify('Application Deleted Successfully', {
 					position:'bottom left',
 					className: 'success'
