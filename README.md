@@ -8,7 +8,7 @@
 [Heroku link][heroku]
 
 [production]: https://www.joblogged.com
-[heroku]: https://joblogged.herokuapp.com
+[heroku]: http://joblogged.herokuapp.com
 
 ## Description
 

@@ -129,11 +129,7 @@ class ApplicationChart extends React.Component {
 		let today = moment(new Date());
 		let daysSinceStart = today.diff(start, 'days');
 		let otherApplicantsData = this.otherApplicantsData
-<<<<<<< HEAD
-																	.slice(0, Math.round(daysSinceStart + 0.5));
-=======
-																	.slice(0, Math.round(daysSinceStart +  1));
->>>>>>> gmail
+																	.slice(0, Math.round(daysSinceStart + 0.4));
 		let appDataArray = Object.keys(appData).map(diff => {
 			return({ x: diff, y: appData[diff]});
 		});
