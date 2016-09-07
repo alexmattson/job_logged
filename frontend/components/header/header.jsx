@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter } from 'react-router';
+import { withRouter, hashHistory } from 'react-router';
 import { isEmpty } from 'lodash';
 
 class Header extends React.Component {
@@ -90,13 +90,18 @@ class Header extends React.Component {
 		}
 	}
 
+	goHome() {
+		hashHistory.push('/');
+	}
+
 	render() {
 		return (
       <header id="header" className="header">
         <div className="pull-left h-logo">
           <img src='https://s16.postimg.io/4gxl6aq1x/logo_light.png'
                alt='Logo'
-               className='logo' />
+               className='logo'
+							 onClick={this.goHome}/>
         </div>
 
 				{this.searchbar()}

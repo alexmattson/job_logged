@@ -27,6 +27,7 @@ class Contact extends React.Component {
           position:'bottom left',
           className: 'success'
         });
+        this.setState({contactAdded: false});
       }
     }
   }
