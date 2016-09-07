@@ -13,7 +13,7 @@ class Header extends React.Component {
 
 	componentDidUpdate() {
 		if (this.props.applications) {
-			$( "#searchbar" ).select2({
+			let $search = $( "#searchbar" ).select2({
 				templateResult: formatApplication,
 				placeholder: 'Search Applications',
 				allowClear: true,
@@ -21,7 +21,10 @@ class Header extends React.Component {
 			});
 
 			$( "#searchbar" ).on("change", (e) => {
-				this.props.router.push(`/application/${e.target.value}`);
+				if (e.target.value !== '') {
+					this.props.router.push(`/application/${e.target.value}`);
+					$search.val(null);
+				}
 			});
 
 			let apps = this.props.applications.all;

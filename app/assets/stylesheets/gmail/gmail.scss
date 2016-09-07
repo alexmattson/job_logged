@@ -1,0 +1,71 @@
+$light-blue: #5bc0de;
+
+.gmail {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 1 100%;
+  width: 100%;
+  height: 100%;
+  background: white;
+  color: #333333;
+  padding: 15px;
+  margin: 0 0 10px 0;
+}
+
+.authorize-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.gmail .email {
+  display: flex;
+  padding: 10px;
+  background: #eee;
+  border-top: 1px solid #ddd;
+}
+
+.gmail .email:last-of-type {
+  border-bottom: 1px solid #ddd;
+}
+
+.gmail .email:hover {
+  cursor: pointer;
+  background: $light-blue;
+  color: white;
+}
+
+.gmail .snippet {
+  padding-right: 15px;
+  width: 70%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.gmail .subject {
+  width: 30%;
+  padding-left: 15px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.gmail .body {
+  background: #fff;
+  width: 100%;
+  overflow: scroll;
+
+  max-height: 0px;
+  padding: 0px 20px;
+
+  -webkit-transition: max-height 1s, padding 1s;
+  transition: max-height 1s, padding 1s;
+
+  &.visible {
+    padding: 20px 20px;
+    max-height: 200px;
+  }
+}
