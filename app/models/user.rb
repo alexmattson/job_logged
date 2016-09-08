@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
 	before_validation :ensure_session_token_uniqueness
 
   # Associations
-	has_many :applications
+	has_many :applications, dependent: :destroy
 	has_many :events,
 		through: :applications
 
