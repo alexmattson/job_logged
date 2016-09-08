@@ -19,7 +19,7 @@ task :reset_guest => :environment do
     Application.create(company: Faker::Company.name,
                        job_title: Faker::Company.profession,
                        progress: progress.sample,
-                       user_id: 1,
+                       user_id: User.find_by_username('guest').id,
                        created_at: Faker::Date.between(5.days.ago, Date.today));
   end
 
