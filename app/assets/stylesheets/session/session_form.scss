@@ -1,4 +1,6 @@
 // Session Form
+$red: #ff3850;
+$darker-red: #b04b40;
 
 .session-form {
   position: absolute;
@@ -33,6 +35,18 @@
   text-align: center;
   font-weight: lighter;
   text-shadow: 1px 1px 2px #444
+}
+
+.session-form span {
+  &.error {
+    background: $red;
+    padding-left: 10px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    border-top: 1px solid #ad473c;
+    padding-right: 10px;
+    color: white;
+  }
 }
 
 .session-form .content {

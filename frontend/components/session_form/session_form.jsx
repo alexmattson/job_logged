@@ -17,6 +17,20 @@ class SessionForm extends React.Component {
 
 	componentDidUpdate(){
 		this.redirectIfLoggedIn();
+		if (this.props.location.pathname === '/signup') {
+			if (this.state.password !== this.state.cpassword) {
+				$('#form-submit-button').prop('disabled', true);
+				$('#password-label')[0].classList.add('error');
+				$('#cpassword-label')[0].classList.add('error');
+			} else {
+				$('#form-submit-button').prop('disabled', false);
+				$('#password-label')[0].classList.remove('error');
+				$('#cpassword-label')[0].classList.remove('error');
+			}
+		} else {
+			$('#password-label')[0].classList.remove('error');
+			$('#form-submit-button').prop('disabled', false);
+		}
 	}
 
 	redirectIfLoggedIn(){
@@ -61,7 +75,10 @@ class SessionForm extends React.Component {
 								 value={this.state.cpassword}
 								 onChange={this.update("cpassword")} />
 							 <label className="input__label input__label--yoko" htmlFor="cpassword">
-						<span className="input__label-content input__label-content--yoko">Confirm Password</span>
+						<span className="input__label-content input__label-content--yoko"
+									id='cpassword-label'>
+							Confirm Password
+						</span>
 					</label>
 				</div>
 			);
@@ -118,11 +135,15 @@ class SessionForm extends React.Component {
 										 value={this.state.password}
 										 onChange={this.update("password")} />
 									 <label className="input__label input__label--yoko" htmlFor="password">
-								<span className="input__label-content input__label-content--yoko">Password</span>
+								<span className="input__label-content input__label-content--yoko"
+											id='password-label'>
+									Password
+								</span>
 							</label>
 						</div>
 						{ this._confirmPassword() }
-						<button className="btn btn-primary btn-lg session-submit margin-right">
+						<button className="btn btn-primary btn-lg session-submit margin-right"
+										id='form-submit-button'>
 							{ this.props.formType }
 						</button>
 						<button className="btn btn-success btn-lg session-submit"

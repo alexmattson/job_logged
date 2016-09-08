@@ -30,24 +30,29 @@ class SessionForm extends React.Component {
 	}
 
 	render() {
-		return (
-			<div className='sidebar' id='sidebar'>
-        <ul>
-          <li id='home' onClick={this.home} className={this.setClass('/')}>
-            <i className="fa fa-home"></i>
-            <span>Home</span>
-          </li>
-          <li id='profile' onClick={this.profile} className={this.setClass('/profile')}>
-            <i className="fa fa-user"></i>
-            <span>Profile</span>
-          </li>
-          <li>
-            <i className="fa fa-sign-out"></i>
-            <span onClick={this.logout}>Logout</span>
-          </li>
-        </ul>
-			</div>
-		);
+		let path = this.props.location.pathname;
+		if (path === '/login' || path ==='/signup') {
+			return (<div></div>);
+		} else {
+			return (
+				<div className='sidebar' id='sidebar'>
+					<ul>
+						<li id='home' onClick={this.home} className={this.setClass('/')}>
+							<i className="fa fa-home"></i>
+							<span>Home</span>
+						</li>
+						<li id='profile' onClick={this.profile} className={this.setClass('/profile')}>
+							<i className="fa fa-user"></i>
+							<span>Profile</span>
+						</li>
+						<li>
+							<i className="fa fa-sign-out"></i>
+							<span onClick={this.logout}>Logout</span>
+						</li>
+					</ul>
+				</div>
+			);
+		}
 	}
 
 }
