@@ -6,7 +6,18 @@ import { RECEIVE_APPLICATIONS,
 import { RECEIVE_CONTACT,
         CONTACT_ERROR
       } from '../actions/contact_actions';
+import { SessionConstants } from '../actions/session_actions';
 import merge from 'lodash/merge';
+
+
+
+const emptyApplications = {
+  all: {},
+  current: {
+    contact: {}
+  }
+};
+
 
 const ApplicationsReducer = (state = {}, action) => {
   let newState = merge({}, state);
@@ -24,6 +35,9 @@ const ApplicationsReducer = (state = {}, action) => {
     case APPLICATION_ERROR:
       alert(action.error);
       return state;
+
+    case SessionConstants.LOGOUT:
+      return emptyApplications;
 
     case RECEIVE_CONTACT:
       let id = action.contact.application_id;

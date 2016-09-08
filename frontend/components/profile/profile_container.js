@@ -12,7 +12,7 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  requestEvents: (month) => dispatch(requestEvents(month)),
+  requestEvents: (id) => dispatch(requestEvents(id)),
   requestApplications: () => dispatch(requestApplications()),
 });
 

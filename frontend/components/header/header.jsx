@@ -14,6 +14,7 @@ class Header extends React.Component {
 	componentDidUpdate() {
 		if (this.props.applications) {
 			let $search = $( "#searchbar" ).select2({
+				ignore: null,
 				templateResult: formatApplication,
 				placeholder: 'Search Applications',
 				allowClear: true,

@@ -13,6 +13,8 @@ class User < ActiveRecord::Base
 
   # Associations
 	has_many :applications
+	has_many :events,
+		through: :applications
 
   # Methods
 	def password= password

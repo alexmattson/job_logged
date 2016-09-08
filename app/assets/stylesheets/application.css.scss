@@ -56,6 +56,11 @@ h3 {
 
 .sidebar-icon{
   margin-left: 10px;
+  // margin-top: 10px;
+}
+
+.sidebar-icon:hover {
+  cursor: pointer;
 }
 
 .sidebar {
@@ -113,7 +118,7 @@ h3 {
 .main {
   background-image: url('https://lh3.googleusercontent.com/MClXew2pCfumpPWmcBx84HNU-rXC_vhyKjASkbJCZrfS_S9QPCXt3LVyjKcZkG4XUugiyeTX-Tw=w5760-h3600-rw-no');
   background-repeat: no-repeat;
-  background-size: 100% auto;
+  background-size: cover;
   background-position: center;
   height: 250px;
   padding: 20px;
@@ -682,10 +687,37 @@ input[type=time]::-webkit-inner-spin-button {
     margin-bottom: 10px;
   }
 
-  .main {
-    background-size: auto 100%;
+}
+
+@media (max-width: 835px) {
+  //content
+  .app-content {
+    width: 100%;
+
+    &.expand {
+      width: calc(100% - 150px);
+    }
   }
 
-  //profile
+  //sidebar
+  .sidebar {
+    display: none;
+  }
+
+  .sidebar .show {
+    display: block;
+  }
+
+  .sm-sidebar-icon {
+    display: block;
+    font-size: 40px;
+    color: #fff;
+  }
+
+  //application
+  .contact-container, .event-container{
+    flex: 1 100%;
+    margin-bottom: 10px;
+  }
 
 }

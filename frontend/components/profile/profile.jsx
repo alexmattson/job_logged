@@ -12,7 +12,7 @@ class Profile extends React.Component {
 	componentDidMount(){
 		let date = new Date();
 		let month = date.getMonth();
-		this.props.requestEvents({month});
+		this.props.requestEvents(this.props.session.currentUser.id);
 	}
 
 	componentWillReceiveProps(newProps) {

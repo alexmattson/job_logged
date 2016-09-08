@@ -29,7 +29,7 @@ import { receiveErrors } from '../actions/error_actions';
    const eventErrored = data => dispatch(receiveErrors(data));
    switch(action.type){
      case REQUEST_EVENTS:
-       fetchEvents(action.filter, eventsSuccess);
+       fetchEvents(action.user_id, eventsSuccess);
        return next(action);
      case REQUEST_APPLICATION_EVENTS:
        fetchApplicationEvents(action.applicationId, eventsSuccess);

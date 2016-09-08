@@ -5,13 +5,17 @@ $dark-font: #333333;
 
 .search-dropdown {
   position: absolute;
-  top: -163px;
+  top: -153px;
   width: 100%;
 }
 
 .header .select2-selection:focus {
   box-shadow: none;
   outline: 0 none;
+}
+
+.header .select2-container {
+  margin-top: 10px;
 }
 
 .header .select2-selection {

@@ -16,6 +16,9 @@ class ApplicationIndex extends React.Component {
   componentDidMount() {
     this.props.requestApplication(this.props.routeParams.id);
     this.props.requestApplicationEvents(this.props.routeParams.id);
+    if (isEmpty(this.props.applications)) {
+      this.props.requestApplications();
+    }
   }
 
   componentWillReceiveProps(newProps) {

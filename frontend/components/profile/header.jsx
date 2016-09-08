@@ -42,7 +42,7 @@ class Header extends React.Component {
   }
 
 	appPercentage() {
-		return Math.round((this.applicationsSent() / 1000) * 100);
+		return Math.round((this.applicationsSent() / 250) * 100);
 	}
 
   applicationsSent() {

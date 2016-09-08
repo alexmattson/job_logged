@@ -20,6 +20,13 @@ $light-blue: #5bc0de;
   align-items: center;
 }
 
+.authorize-buttons {
+  width: 160px;
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
 .gmail .email {
   display: flex;
   padding: 10px;
@@ -46,6 +53,7 @@ $light-blue: #5bc0de;
 }
 
 .gmail .subject {
+  font-weight: bold;
   width: 30%;
   padding-left: 15px;
   white-space: nowrap;

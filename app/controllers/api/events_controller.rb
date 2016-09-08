@@ -6,8 +6,8 @@ class Api::EventsController < ApplicationController
   end
 
   def filtered
-    filter = params[:filter].values.first.to_i
-    @events = Event.by_month(filter)
+    @events = Event.joins(:application)
+                   .where("applications.user_id =  #{params['user_id']}")
     render "api/events/index"
   end
 

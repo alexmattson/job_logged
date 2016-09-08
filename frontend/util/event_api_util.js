@@ -1,8 +1,8 @@
-export const fetchEvents = function(filter, success){
+export const fetchEvents = function(user_id, success){
   $.ajax({
     method: 'GET',
     url: 'api/events',
-    data: {filter},
+    data: {user_id},
     success
   });
 };

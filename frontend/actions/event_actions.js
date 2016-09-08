@@ -9,9 +9,9 @@ export const UPDATE_EVENT = "UPDATE_EVENT";
 export const DESTROY_EVENT = "DESTROY_EVENT";
 export const EVENT_ERROR = "EVENT_ERROR";
 
-export const requestEvents = (filter) => ({
+export const requestEvents = (user_id) => ({
   type: REQUEST_EVENTS,
-  filter
+  user_id
 });
 
 export const requestApplicationEvents = (applicationId) => ({
