@@ -141,7 +141,7 @@ Use AWS to allow the user to upload resume/cover-letter, and any other documents
 
 ### Interview Questions
 
-Allow user to enter interview questions for a company and what the believe to be the correct answer to be. These then get pooled, propagated and displayed across every user with an application for that company. Other user can then change the answer if the feel they have a better answer.
+Allow user to enter interview questions for a company and what they believe the correct answer to be. These then get pooled, propagated and displayed across every user with an application for that company. Other user can then change the answer if the feel they have a better answer.
 
 Further more you can utilize there questions to make a small quiz feature that takes all the questions in the database and allow the user to go through and quiz themselves to prep for interviews.
 
