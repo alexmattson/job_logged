@@ -16,16 +16,16 @@ Managing all the intricacies of the job search process can be difficult; this si
 
 ## Technology Stack
 
-| Area               | Software      |
-| ---------------    |:-------------:|
-| Frontend           | React / Redux |
-| Backend            | Rails 5.0     |   
-| Hosting      		   | Heroku        |
-| Repo      		   | GitHub        |
+| Area               | Software      | Misc. |
+| ---------------    |:-------------:| ---: |
+| Frontend           | React / Redux | Single Page App |
+| Backend            | Rails 5.0     |  Monolithic Backend |
+| Hosting      		   | Heroku        | |
+| Repo      		   | GitHub        ||
 
 ## Features
 
-*the following features are allows listed from top of the picture to the bottom*
+**NB:** *the following features are allows listed from top of the picture to the bottom*
 
 ### Home / Dashboard
 
@@ -125,6 +125,19 @@ The header keeps track of the following general data for the user:
 #### Calendar
 
 Pulls all events from all the users applications and puts them in one easy to use calendar. Every event is a link to the corresponding application page.
+
+
+## Future Direction
+
+I plan to continue the project with the following features:
+
+### Offer Management
+
+Create a database table and full integration for the details of an offer (i.e. Base Salary, Equity, Signing Bonus, Date Offer Expires). With this, create a page for an individual to compare and manage the current open offers.
+
+### Files Management
+
+Use AWS to allow the user to upload resume/cover-letter, and any other documents they wish, to a "Files" module on the application page.
 
 ---
 Developed by [Alex Mattson](http://www.alexmattson.com)
