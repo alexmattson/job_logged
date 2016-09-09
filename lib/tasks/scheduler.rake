@@ -51,7 +51,7 @@ task :reset_guest => :environment do
     Event.create(title: title[type],
                  event_type: type.to_s,
                  date_time: Faker::Time.forward(23, :afternoon),
-                 notes: notes.sample,
+                 notes: notes.sampl,
                  application_id: applications.sample.id);
   end
 
