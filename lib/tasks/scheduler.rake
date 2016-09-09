@@ -15,13 +15,16 @@ task :reset_guest => :environment do
               'on-site',
               'offer',
               'rejected']
+
+  applications = []
   30.times do
-    Application.create(company: Faker::Company.name,
-                       job_title: Faker::Company.profession,
-                       progress: progress.sample,
-                       user_id: User.find_by_username('guest').id,
-                       created_at: Faker::Date.between(5.days.ago, Date.today));
+    applications << Application.create(company: Faker::Company.name,
+                                       job_title: Faker::Company.profession,
+                                       progress: progress.sample,
+                                       user_id: User.find_by_username('guest').id,
+                                       created_at: Faker::Date.between(5.days.ago, Date.today));
   end
+
 
   Application.all.each do |app|
     Contact.create(fname: Faker::Name.first_name,
@@ -32,14 +35,24 @@ task :reset_guest => :environment do
                    application_id: app.id)
   end
 
-  title = ['Application Update',
-           'Phone interview',
-           'On-site Interview']
+  title = {
+      'application': 'Application Update',
+      'phone': 'Phone interview',
+      'on-site': 'On-site Interview'
+    }
+  notes = [
+    'I am not ready for this',
+    'need to review',
+    "I'm excited about this one",
+    'make sure to learn more about the company'
+  ]
   30.times do
-    Event.create(title: title.sample,
+    type = title.keys.sample
+    Event.create(title: title[type],
+                 event_type: type.to_s,
                  date_time: Faker::Time.forward(23, :afternoon),
-                 notes: 'I am not ready for this',
-                 application_id: rand(20));
+                 notes: notes.sample,
+                 application_id: applications.sample.id);
   end
 
   puts "done."
