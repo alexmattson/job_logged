@@ -6,6 +6,7 @@ class SessionForm extends React.Component {
 		super(props);
     this.home = this.home.bind(this);
     this.profile = this.profile.bind(this);
+    this.coverLetter = this.coverLetter.bind(this);
     this.logout = this.logout.bind(this);
 	}
 
@@ -15,6 +16,10 @@ class SessionForm extends React.Component {
 
 	profile() {
 		hashHistory.push('/profile');
+	}
+
+	coverLetter() {
+		hashHistory.push('/cover-letter');
 	}
 
   logout() {
@@ -44,6 +49,10 @@ class SessionForm extends React.Component {
 						<li id='profile' onClick={this.profile} className={this.setClass('/profile')}>
 							<i className="fa fa-user"></i>
 							<span>Profile</span>
+						</li>
+						<li id='coverLetter' onClick={this.coverLetter} className={this.setClass('/cover-letter')}>
+							<i className="fa fa-pencil"></i>
+							<span>Cover Letter</span>
 						</li>
 						<li>
 							<i className="fa fa-sign-out"></i>

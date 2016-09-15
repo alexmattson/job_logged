@@ -7,6 +7,7 @@ import HomeContainer from './home/home_container';
 import SessionFormContainer from './session_form/session_form_container';
 import ApplicationContainer from './application/application_container';
 import ProfileContainer from './profile/profile_container';
+import CoverLetterContainer from './cover_letter/cover_letter_container';
 
 class AppRouter extends React.Component{
   constructor(props){
@@ -46,8 +47,11 @@ class AppRouter extends React.Component{
           <Route path="/application/:id"
                  component={ ApplicationContainer }
                  onEnter={this._ensureLoggedIn} />
-               <Route path="/profile"
+          <Route path="/profile"
                  component={ ProfileContainer }
+                 onEnter={this._ensureLoggedIn} />
+          <Route path="/cover-letter"
+                 component={ CoverLetterContainer }
                  onEnter={this._ensureLoggedIn} />
         </Route>
       </Router>

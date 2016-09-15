@@ -4,6 +4,8 @@ class Api::UsersController < ApplicationController
 		@user = User.new(user_params)
 
 		if @user.save
+			CoverLetter.create({user_id: @user.id, cover_letter: CoverLetter.default})
+			debugger
 			login(@user)
 			render "api/users/show"
 		else

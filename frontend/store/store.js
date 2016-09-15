@@ -5,7 +5,8 @@ import merge from 'lodash/merge';
 
 const nullState = {
   session: {},
-  errors: [], 
+  cover_letter: {},
+  errors: [],
   applications: {
     all: {},
     current: {

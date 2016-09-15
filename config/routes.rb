@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       resources :events, only: [:create, :update, :destroy, :index]
       resources :contacts, only: [:create, :update, :index]
     end
+    resources :cover_letters, only: [:index, :update]
     get '/events', to: 'events#filtered'
   end
 end

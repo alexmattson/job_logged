@@ -16,6 +16,8 @@ class User < ActiveRecord::Base
 	has_many :events,
 		through: :applications
 
+	has_one :cover_letter
+
   # Methods
 	def password= password
 		self.password_digest = BCrypt::Password.create(password)

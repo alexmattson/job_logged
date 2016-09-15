@@ -1,0 +1,161 @@
+$red: #ff3850;
+$dark-font: #333333;
+
+
+.cover-letter {
+
+  .cover-letter-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url('https://s17.postimg.org/taue0wxj3/typewriter_801921_1920.jpg');
+
+    h1 {
+      color: white;
+    }
+
+  }
+
+  .cover-letter-container {
+    display: flex;
+  }
+
+  .cover-letter-buttons {
+    display: flex;
+    justify-content: center;
+
+    .btn {
+      width: 50%;
+    }
+  }
+
+  .btn-edit {
+    width: 70px;
+    white-space: normal;
+  }
+
+  .btn-tab {
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+  }
+
+  .company {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    p {
+      text-align: center;
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+    }
+  }
+
+  .left, .right {
+    min-height: 100px;
+    width: calc(50%);
+  }
+
+  .left {
+
+    .group-name {
+      background: $red;
+      padding: 10px;
+      margin-top: 10px;
+
+      h3 {
+        margin: 0;
+      }
+    }
+
+    .dragable {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: row;
+
+      border: 1px solid #ddd;
+      padding: 10px;
+
+      p {
+        width: 100%;
+        max-height: 20px;
+        margin: 0;
+        // white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        -webkit-transition: max-height 1s;
+        transition: max-height 1s;
+      }
+
+      i {
+        margin: 0px 5px;
+      }
+
+      .show {
+        max-height: 300px;
+        // height: auto;
+        // white-space: normal;
+        overflow: scroll;
+      }
+
+      textarea {
+        width: 100%;
+      }
+
+    }
+
+  }
+
+  .right {
+    background: rgba(255, 255, 255, 0.5);
+    margin: 10px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+
+    i {
+      display: none;
+    }
+  }
+
+  .dragable:hover {
+    cursor: pointer;
+  }
+}
+
+
+/*  Dragula Defaults */
+
+.gu-mirror {
+  position: fixed !important;
+  margin: 0 !important;
+  z-index: 9999 !important;
+  opacity: 0.8;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+  filter: alpha(opacity=80);
+
+  i {
+    display: none;
+  }
+}
+.gu-hide {
+  display: none !important;
+}
+.gu-unselectable {
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+}
+.gu-transit {
+  opacity: 0.2;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
+  filter: alpha(opacity=20);
+
+  i {
+    display: none;
+  }
+}
