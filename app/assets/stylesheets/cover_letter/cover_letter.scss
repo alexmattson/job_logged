@@ -80,6 +80,14 @@ $dark-font: #333333;
         align-items: center;
         justify-content: center;
         width: 40%;
+
+        canvas {
+          margin-top: 5px;
+        }
+        
+        .percent {
+          color: $dark-font;
+        }
       }
     }
 

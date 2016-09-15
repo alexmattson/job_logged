@@ -2,8 +2,9 @@ import React from 'react';
 import {merge, isEmpty, clone} from 'lodash';
 import dragula from 'dragula';
 import uniq from 'uniq';
-
 import stopwords from 'stopwords';
+
+import PieChart from './pie_chart';
 
 // Components
 
@@ -79,9 +80,7 @@ class CoverLetter extends React.Component {
             onClick={this.compare}>
             Compare
           </button>
-          <div className='match'>
-            {this.state.match}%
-          </div>
+          <PieChart percent={this.state.match}/>
         </div>
         <div className='match-info'>
           <button className='btn'
