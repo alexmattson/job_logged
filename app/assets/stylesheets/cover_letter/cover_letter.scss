@@ -52,6 +52,43 @@ $dark-font: #333333;
     }
   }
 
+  .cover-letter-match {
+    padding: 10px 0;
+    margin-top: 10px;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+
+    .match-container {
+      display: flex;
+      height: 0;
+      overflow: hidden;
+
+      transition: height 1s;
+
+      &.show-match {
+        height: 150px;
+      }
+
+      textarea {
+        width: 49%;
+        height: 150px;
+        margin-right: 10px;
+      }
+
+      .match {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40%;
+      }
+    }
+
+    .match-info {
+      text-align: center;
+      margin-top: 10px;
+    }
+  }
+
   .left, .right {
     min-height: 100px;
     width: calc(50%);

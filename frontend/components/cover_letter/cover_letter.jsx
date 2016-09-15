@@ -2,6 +2,8 @@ import React from 'react';
 import {merge, isEmpty, clone} from 'lodash';
 import dragula from 'dragula';
 
+import Matcher from './matcher';
+
 // Components
 
 class CoverLetter extends React.Component {
@@ -31,6 +33,7 @@ class CoverLetter extends React.Component {
     this.toggle = this.toggle.bind(this);
     this.saveText = this.saveText.bind(this);
     this.downloadText = this.downloadText.bind(this);
+    this.convertText = this.convertText.bind(this);
   }
 
   componentDidMount() {
@@ -159,6 +162,10 @@ class CoverLetter extends React.Component {
   }
 
   downloadText() {
+    window.location = `data:application/octet-stream;charset=utf-16le;base64,${btoa(unescape(encodeURIComponent(this.convertText())))}`;
+  }
+
+  convertText(){
     let fullText = document.getElementById('right').childNodes;
     fullText = Array.from(fullText).map(node => {
       let text = node.childNodes[0].innerHTML;
@@ -166,10 +173,8 @@ class CoverLetter extends React.Component {
                           this.state.company);
       return text;
     });
-    window.location = `data:application/octet-stream;charset=utf-16le;base64,${btoa(unescape(encodeURIComponent(fullText.join("\n\n\n"))))}`;
+    return fullText.join("\n\n\n");
   }
-
-
 
   render() {
     return(
@@ -196,6 +201,7 @@ class CoverLetter extends React.Component {
             value={this.state.company}
               onChange={this.updateCompany()} />
         </div>
+        <Matcher letter={this.convertText}/>
         <div className='cover-letter-container'>
           <div className='left' id='left'>
             {this.renderParagraphs('opening')}
