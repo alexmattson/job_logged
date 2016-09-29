@@ -26,7 +26,6 @@ class Map extends React.Component {
     }
 
     function codeAddress(map, address) {
-
       let geocoder= new google.maps.Geocoder();
       geocoder.geocode( { 'address': address}, function(results, status) {
         if (status == 'OK') {
@@ -35,9 +34,7 @@ class Map extends React.Component {
               map: map,
               position: results[0].geometry.location
           });
-        } else {
-          alert('Geocode was not successful for the following reason: ' + status);
-        }
+        } 
       });
     }
   }
